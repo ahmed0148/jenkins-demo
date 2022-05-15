@@ -8,6 +8,12 @@ class FizzBuzzTest {
 
     @BeforeEach
     public void setUp() {
+
+        System.out.println("==========================");
+        System.out.println("==========================");
+        System.out.println("==================================================================================================================================");
+        System.out.println("==========================");
+        System.out.println("==========================");
         fB = new FizzBuzz();
     }
 
