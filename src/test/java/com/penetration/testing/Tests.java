@@ -24,7 +24,7 @@ class Tests {
         obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
         int spacesToIndentEachLevel = 2;
         String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-        String path="PenTestReport.html";
+        String path="index.html";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
         writer.println("<h1>"+rst+"</h1>");
         writer.close();
