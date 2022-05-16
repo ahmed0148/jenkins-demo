@@ -19,15 +19,15 @@ class Tests {
     public void testZero() throws IOException, InterruptedException {
         System.out.println("=========================================================================================================");
         System.out.println("=========================================================================================================");
-    JSONObject obj = new JSONObject();
+        JSONObject obj = new JSONObject();
 
-    obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
-    int spacesToIndentEachLevel = 2;
-    String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-    String path="JsonFiles"+Calendar.getInstance().getTimeInMillis()+".json";
-    PrintWriter writer = new PrintWriter(path, "UTF-8");
-    writer.println(rst);
-    writer.close();
+        obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
+        int spacesToIndentEachLevel = 2;
+        String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
+        String path="JsonReport.json";
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.println(rst);
+        writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
 //    obj.put("Nikto scan",niktoScan());
 //    obj.put("SQLMAP", SQLMapScan("http://local-iam.dev-machinestalk.com/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/protocol/openid-connect/auth?response_type=code&client_id=thingstalk&scope=email%20openid%20profile&state=4xsrWMTDw4SW6yPF8TyfOTZs0ZHZb2G9mLee55jahNE%3D&redirect_uri=http://local-tt.dev-machinestalk.com/login/oauth2/code/&nonce=QEag5SgTJ7uZFpy358sgwTGqY4ASnMoazLBmPkzYnXA","username=hello&password=hello%3A%29",1));
