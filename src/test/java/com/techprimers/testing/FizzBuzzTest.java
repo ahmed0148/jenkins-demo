@@ -1,6 +1,6 @@
 package com.techprimers.testing;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
 class FizzBuzzTest {
 
