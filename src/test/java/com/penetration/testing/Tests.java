@@ -30,7 +30,7 @@ class Tests {
     String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
 
     System.out.println(rst);
-    file = new FileWriter("/home/ahmed/Downloads/jenkins-example-master/src/main/JsonFiles/JsonReport"+Calendar.getInstance().getTimeInMillis()+".json");
+    file = new FileWriter("/home/ahmed/Downloads/jenkins-example-master/src/test/java/JsonFiles/JsonReport"+Calendar.getInstance().getTimeInMillis()+".json");
     file.write(rst);
     file.flush();
     file.close();
