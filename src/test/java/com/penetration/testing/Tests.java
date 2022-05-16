@@ -19,7 +19,11 @@ class Tests {
     public void testZero() throws IOException, InterruptedException {
         System.out.println("=========================================================================================================");
         System.out.println("=========================================================================================================");
-    JSONObject obj = new JSONObject();
+    PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
+    writer.println("The first line");
+    writer.println("The second line");
+    writer.close();
+        JSONObject obj = new JSONObject();
 
     obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
 //    obj.put("Brute Force Attack", hydraScan());
@@ -40,7 +44,8 @@ class Tests {
     }
 
     public static void main(String[] args) throws IOException {
-//        Calendar date = Calendar.getInstance();
+
+        //        Calendar date = Calendar.getInstance();
     }
 //    public static void main(String[] args) throws IOException, InterruptedException {
 //        hydraScan();
