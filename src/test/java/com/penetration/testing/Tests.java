@@ -5,31 +5,46 @@ import org.json.JSONObject;
 import org.json.XML;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetAddress;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 
 class Tests {
 
-
+    private static FileWriter file;
 @Test
     public void testZero() throws IOException, InterruptedException {
-        System.out.println("=======================================================================================================================================");
-        System.out.println("=======================================================================================================================================");
+        System.out.println("=========================================================================================================");
+        System.out.println("=========================================================================================================");
     JSONObject obj = new JSONObject();
 
     obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
-    obj.put("Brute Force Attack", hydraScan());
-    obj.put("Nikto scan",niktoScan());
-    obj.put("SQLMAP", SQLMapScan("http://local-iam.dev-machinestalk.com/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/protocol/openid-connect/auth?response_type=code&client_id=thingstalk&scope=email%20openid%20profile&state=4xsrWMTDw4SW6yPF8TyfOTZs0ZHZb2G9mLee55jahNE%3D&redirect_uri=http://local-tt.dev-machinestalk.com/login/oauth2/code/&nonce=QEag5SgTJ7uZFpy358sgwTGqY4ASnMoazLBmPkzYnXA","username=hello&password=hello%3A%29",1));
-    obj.put("Zap scan",zapScan());
+//    obj.put("Brute Force Attack", hydraScan());
+//    obj.put("Nikto scan",niktoScan());
+//    obj.put("SQLMAP", SQLMapScan("http://local-iam.dev-machinestalk.com/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/protocol/openid-connect/auth?response_type=code&client_id=thingstalk&scope=email%20openid%20profile&state=4xsrWMTDw4SW6yPF8TyfOTZs0ZHZb2G9mLee55jahNE%3D&redirect_uri=http://local-tt.dev-machinestalk.com/login/oauth2/code/&nonce=QEag5SgTJ7uZFpy358sgwTGqY4ASnMoazLBmPkzYnXA","username=hello&password=hello%3A%29",1));
+//    obj.put("Zap scan",zapScan());
     int spacesToIndentEachLevel = 2;
     String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
+
     System.out.println(rst);
+    file = new FileWriter("/home/ahmed/Downloads/jenkins-example-master/JsonFiles/jsonReport1"+Calendar.getInstance().getTimeInMillis()+".json");
+    file.write(rst);
+    file.flush();
+    file.close();
+    System.out.println("=========================================================================================================");
+    System.out.println("=========================================================================================================");
 
     }
+
+    public static void main(String[] args) throws IOException {
+//        Calendar date = Calendar.getInstance();
+    }
+//    public static void main(String[] args) throws IOException, InterruptedException {
+//        hydraScan();
+//    }
 
     public static JSONObject hydraScan() throws IOException, InterruptedException {
         System.out.println("hydra scan is running");
@@ -46,6 +61,7 @@ class Tests {
                 new InputStreamReader(p.getInputStream()));
         boolean logged_in=false;
         while ((s = br.readLine()) != null){
+//            System.out.println(s);
             if (s.contains("1 valid password found")){
                 logged_in=false;
             }
@@ -54,11 +70,11 @@ class Tests {
         JSONObject obj2 = new JSONObject();
         obj2.put("Logged in",logged_in);
         int spacesToIndentEachLevel = 2;
-        String rst=new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
         p.waitFor();
         p.destroy();
         return obj2;
     }
+
     public static JSONObject zapScan() throws IOException, InterruptedException {
         System.out.println("zap scan is running");
         String prefix = "/bin/bash";
@@ -199,7 +215,6 @@ class Tests {
 
     public static JSONObject Dos(String url) throws IOException, InterruptedException {
         System.out.println("dos attack is running");
-
         String prefix = "/bin/bash";
         String c = "-c";
         String terminalCommand = "sudo -S <<< \"23474629\" hping3 -c 10000 -d 120 -S -w 64 -p 80 --flood --rand-source -host "+ url;
@@ -207,7 +222,7 @@ class Tests {
         File workingDirectory = new File("/home");
         pb.directory(workingDirectory);
         Process p = pb.start();
-        Thread.sleep(10000);
+        Thread.sleep(3000);
         JSONObject obj = new JSONObject();
         JSONObject obj2 = new JSONObject();
         obj2.put("result",!InetAddress.getByName(url).isReachable(20));
