@@ -24,7 +24,7 @@ class Tests {
     obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
     int spacesToIndentEachLevel = 2;
     String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-    String path="/home/ahmed/Downloads/jenkins-example-master/src/test/java/JsonFiles"+Calendar.getInstance().getTimeInMillis()+".json";
+    String path="JsonFiles"+Calendar.getInstance().getTimeInMillis()+".json";
     PrintWriter writer = new PrintWriter(path, "UTF-8");
     writer.println(rst);
     writer.close();
