@@ -24,9 +24,9 @@ class Tests {
         obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
         int spacesToIndentEachLevel = 2;
         String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-        String path="JsonReport.json";
+        String path="PenTestReport.html";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
-        writer.println(rst);
+        writer.println("<h1>"+rst+"</h1>");
         writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
 //    obj.put("Nikto scan",niktoScan());
