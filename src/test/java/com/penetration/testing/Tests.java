@@ -26,7 +26,22 @@ class Tests {
         String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
         String path="index.html";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
-        writer.println("<h1>"+rst+"</h1>");
+        writer.println("<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+                "    <title>Document</title>\n" +
+                "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
+                "\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "    <h1 id=\"myTitle\" class=\"test\">hello workld</h1>\n" +
+                "    <button id=\"myButton\">click me</button>\n" +
+                "</body>\n" +
+                "<script src=\"script.js\"></script>\n" +
+                "</html>");
         writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
 //    obj.put("Nikto scan",niktoScan());
@@ -38,13 +53,6 @@ class Tests {
 
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        //        Calendar date = Calendar.getInstance();
-    }
-//    public static void main(String[] args) throws IOException, InterruptedException {
-//        hydraScan();
-//    }
 
     public static JSONObject hydraScan() throws IOException, InterruptedException {
         System.out.println("hydra scan is running");
@@ -163,6 +171,7 @@ class Tests {
         p.destroy();
         return obj;
     }
+
     public static JSONObject niktoScan() throws IOException, InterruptedException {
         System.out.println("nikto scan is running");
         String prefix = "/bin/bash";
@@ -178,7 +187,6 @@ class Tests {
                 new InputStreamReader(p.getInputStream()));
         JSONObject obj = new JSONObject();
         JSONObject obj2 = new JSONObject();
-
         JSONArray vulsArray = null;
         vulsArray = new JSONArray();
         String elapsedTime="";
@@ -227,7 +235,6 @@ class Tests {
         JSONObject obj2 = new JSONObject();
         obj2.put("result",!InetAddress.getByName(url).isReachable(20));
         obj.put("Dos attack", obj2);
-
         p.destroy();
         return obj2;
     }
