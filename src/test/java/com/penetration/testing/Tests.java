@@ -40,7 +40,16 @@ class Tests {
                 "    <h1 id=\"myTitle\" class=\"test\">hello workld</h1>\n" +
                 "    <button id=\"myButton\">click me</button>\n" +
                 "</body>\n" +
-                "<script src=\"script.js\"></script>\n" +
+                "<script >\n" +
+                "let button=document.getElementById(\"myButton\");\n" +
+                "let title=document.getElementById(\"myTitle\");\n" +
+                "\n" +
+                "console.log(button.innerHTML);\n" +
+                "button.addEventListener(\"click\",function test() {\n" +
+                "    title.style.color=\"red\";\n" +
+                "    \n" +
+                "})\n" +
+                "</script>\n" +
                 "</html>");
         writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
