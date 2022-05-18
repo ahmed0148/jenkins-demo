@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 import java.net.InetAddress;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 class Tests {
@@ -19,38 +21,29 @@ class Tests {
     public void testZero() throws IOException, InterruptedException {
         System.out.println("=========================================================================================================");
         System.out.println("=========================================================================================================");
-        JSONObject obj = new JSONObject();
+//        JSONObject obj = new JSONObject();
 
-        obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
-        int spacesToIndentEachLevel = 2;
-        String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-        String path="index.html";
+//        obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
+//        int spacesToIndentEachLevel = 2;
+//        String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    String path="index.html";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
         writer.println("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "    <title>Document</title>\n" +
-                "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
-                "\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "    <h1 id=\"myTitle\" class=\"test\">hello workld</h1>\n" +
-                "    <button id=\"myButton\">click me</button>\n" +
-                "</body>\n" +
-                "<script >\n" +
-                "let button=document.getElementById(\"myButton\");\n" +
-                "let title=document.getElementById(\"myTitle\");\n" +
+                "    <h1>\n" +now+
                 "\n" +
-                "console.log(button.innerHTML);\n" +
-                "button.addEventListener(\"click\",function test() {\n" +
-                "    title.style.color=\"red\";\n" +
-                "    \n" +
-                "})\n" +
-                "</script>\n" +
+                "        \n" +
+                "    </h1>\n" +
+                "</body>\n" +
                 "</html>");
+
+
+
         writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
 //    obj.put("Nikto scan",niktoScan());
