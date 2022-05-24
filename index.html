@@ -14,446 +14,128 @@
 </head>
 
 <body>
-<nav>
-    <div class="reportTitle">
-        <span>Penetration test report</span>
-    </div>
-    <div class="reportDate">
-        <span>date date</span>
-    </div>
-</nav>
-<div class="container">
-    <div class="sideBar">
-        <a class="scan" href="">
-            <div class="image">
-                <img class="scanImg" src="dos.png" alt="">
-            </div>
-            <div class="name">
+    <nav id="DOSAttack">
+        <div class="reportTitle">
+            <span>Penetration test report</span>
+        </div>
+        <div class="reportDate">
+            <span>date date</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="sideBar">
+            <a class="scan" href="#">
+                <div class="image">
+                    <img class="scanImg" src="dos.png" alt="">
+                </div>
+                <div class="name">
                     <span class="attackName">
                         Dos Attack
                     </span>
-            </div>
-        </a>
-        <a class="scan" href="#bruteForce">
-            <div class="image">
-                <img class="scanImg" src="BruteForce.png" alt="">
+                </div>
+            </a>
+            <a class="scan" href="#bruteForce">
+                <div class="image">
+                    <img class="scanImg" src="BruteForce.png" alt="">
 
-            </div>
-            <div class="name">
+                </div>
+                <div class="name">
                     <span class="attackName">
                         Brute force attack
                     </span>
-            </div>
+                </div>
 
-        </a>
+            </a>
 
 
-        </a>
-        <a class="scan" href="#SQLInjection">
-            <div class="image">
-                <img class="scanImg" src="sqlinj.png" alt="">
+            </a>
+            <a class="scan" href="#SQLInjection">
+                <div class="image">
+                    <img class="scanImg" src="sqlinj.png" alt="">
 
-            </div>
-            <div class="name">
+                </div>
+                <div class="name">
                     <span class="attackName">
                         SQL Injection Scan
                     </span>
-            </div>
+                </div>
+                
+            </a>
+            <a href="#niktoScan" class="scan">
+                <div class="image">
+                    <img class="scanImg" src="nikto.png" alt="">
 
-        </a>
-        <a href="#niktoScan" class="scan">
-            <div class="image">
-                <img class="scanImg" src="nikto.png" alt="">
-
-            </div>
-            <div class="name">
+                </div>
+                <div class="name">
                     <span class="attackName">
                         Nikto scan
                     </span>
-            </div>
-        </a>
+                </div>
+            </a>
 
-        <a class="scan" href="#zapScan">
-            <div class="image">
-                <img class="scanImg" src="zapscan.jpg" alt="">
+            <a class="scan" href="#zapScan">
+                <div class="image">
+                    <img class="scanImg" src="zapscan.jpg" alt="">
 
-            </div>
-            <div class="name">
+                </div>
+                <div class="name">
                     <span class="attackName">
                         Owasp zap scan
                     </span>
-            </div>
-        </a>
-    </div>
-    <div class="content">
-        <div class="report" id="DOSAttack">
-
-            <div class="reportName">
-                Dos attack
-            </div>
-            <div class="subReportName">
-                Dos attack report
-            </div>
-            <div class="attackDetails">
-                <span class="details">Attack details:</span>
-                <span>- <span class="big">Used tool</span> : hping3</span>
-                <span>- <span class="big">Packets number</span> : 10000 </span>
-                <span>- <span class="big">number of seconds between sending each packet</span> : 10 packets peer
-                        second</span>
-                <span>- <span class="big">packet body size </span> : 120 bytes</span>
-                <span>- <span class="big">Target hostname</span> : local-tt.dev-machinestalk.com</span>
-            </div>
-
-            <span  class="details">Result:</span>
-            <div class="failAlert myAlert" >
-                Dos attack succeeded
-            </div>
-            <!-- <div class="successAlert myAlert">
-                Dos attack failed
-            </div> -->
-
+                </div>
+            </a>
         </div>
-        <div id="bruteForce" class="hide">.</div>
+        <div class="content">            <div class="report" >
 
-        <div class="report" >
-
-            <div class="reportName">
-                SQL Injection attack
-            </div>
-            <div class="subReportName">
-                SQL Injection attack report
-            </div>
-            <div class="attackDetails">
-                <span class="details">Attack details:</span>
-                <span>- <span class="big">Used tool</span> : sqlmap</span>
-                <span>- <span class="big">Target hostname</span> : local-tt.dev-machinestalk.com/auth </span>
-
-            </div>
-            <span class="details">Information:</span>
-
-            <div class="infoAlert myAlert">
-                testing for SQL injection on POST parameter 'password'
-            </div>
-            <div class="infoAlert myAlert">
-                testing 'Boolean-based blind - Parameter replace (original value)' </div>
-            <div class="infoAlert myAlert">
-                testing 'MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)'
-            </div>
-            <br>
-            <span class="details">Criticals:</span>
-
-            <div class="warningAlert myAlert">
-                testing for SQL injection on POST parameter 'password'
-            </div>
-            <div class="warningAlert myAlert">
-                testing 'Boolean-based blind - Parameter replace (original value)'
-            </div>
-            <br>
-            <span class="details">Warnings:</span>
-
-            <div class="failAlert myAlert">
-                testing for SQL injection on POST parameter 'password'
-            </div>
-            <div class="failAlert myAlert">
-                testing 'Boolean-based blind - Parameter replace (original value)'
-            </div>
-        </div>
-        <div id="SQLInjection" class="hide">.</div>
-
-        <div class="report" >
-
-            <div class="reportName">
-                Brute Force attack
-            </div>
-            <div class="subReportName">
-                Brute Force attack report
-            </div>
-            <div class="attackDetails">
-                <span class="details">Attack details:</span>
-                <span>- <span class="big">Used tool </span> : hydra</span>
-                <span>- <span class="big">Target hostname </span> : 10000 </span>
-                <span>- <span class="big">Number of tries </span> : 300</span>
-                <span>- <span class="big"> Login Usernames list </span> : <a href="password_list.txt">Login
+                <div class="reportName">
+                    Brute Force attack
+                </div>
+                <div class="subReportName">
+                    Brute Force attack report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool </span> : hydra</span>
+                    <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
+                    <span>- <span class="big">Target SSH Address </span> : ssh://10.0.0.127:22 </span>
+                    <span>- <span class="big">Number of login tries </span> :300 </span>
+                    <span>- <span class="big">Number of SSH tries </span> : 12</span>
+                    <span>- <span class="big"> Login Usernames list </span> :href="Login_Usernames.txt"Login
                             usernames</a></span>
-                <span>- <span class="big">Login Passwords list </span> :<a href="">Login passwords</a></span>
-                <span>- <span class="big"> SSH Usernames list </span> : <a href="">SSH usernames</a></span>
-                <span>- <span class="big">SSH Passwords list </span> : <a href="">SSH passwords</a></span>
+                    <span>- <span class="big">Login Passwords list </span> :<a href="Login_Passwords.txt">Login passwords</a></span>
+                    <span>- <span class="big"> SSH Usernames list </span> : <a href="SSH_Usernames.txt">SSH usernames</a></span>
+                    <span>- <span class="big">SSH Passwords list </span> :<a href="SSH_Usernames.txt">SSH passwords</a></span>
 
-            </div>
-            <span class="details">Login page Result:</span>
+                </div>
+                <span class="details">Login page Result:</span>
 
-            <div class="successAlert myAlert">
-                0 valide credantials
-            </div>
-            <br>
-            <span class="details">SSH Result:</span>
-
-            <div class="failAlert myAlert">
-                <span class="cred"> Credantials: </span>
-                <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
+             <div class="successAlert myAlert">
+                    0 valide credantials
+                </div>
+                <div class="failAlert myAlert">
+                    <span class="cred"> Credantials: </span>
+                    <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
                         pass123</span>
-                <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
+                    <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
+                        
+                </div>                <br>
+                <span class="details">SSH Result:</span>
+                <div class="successAlert myAlert">
+                    0 valide credantials
+                </div>
+                <div class="failAlert myAlert">
+                    <span class="cred"> Credantials: </span>
+                    <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
+                        pass123</span>
+                    <span class="cred"><span class="big"> - username : </span>test <span class="big"> Password :</span>
                         pass123</span>
 
-            </div>
+                </div>            </div>
+
         </div>
-        <div id="niktoScan" class="hide">.</div>
-
-        <div class="report" >
-            <div class="reportName">
-                Nikto scan
-            </div>
-
-            <div class="subReportName">
-                Nikto scan report
-            </div>
-            <div class="attackDetails">
-                <span class="details">Attack details:</span>
-                <span>- <span class="big">Used tool </span> : hydra</span>
-                <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
-                <span>- <span class="big">Target IP </span> : 10.0.0.127</span>
-                <span>- <span class="big">Target Port </span> : 80 </span>
-            </div>
-            <span class="details">Vulnerabilities list :</span>
-            <table>
-
-                <tr>
-                    <td>
-                        <div class="filed big">URI</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td>
-                        <div class="filed big">HTTP Method</div>
-                        <div class="value"> GET</div>
-                    </td>
-                    <td>
-                        <div class="filed big">Description</div>
-                        <div class="value"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td>
-                        <div class="filed big">Test Links</div>
-                        <div class="value"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td>
-                        <div class="filed big">OSVDB Entries</div>
-                        <div class="value">OSVDB-0</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="filed big">URI</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td>
-                        <div class="filed big">HTTP Method</div>
-                        <div class="value"> GET</div>
-                    </td>
-                    <td>
-                        <div class="filed big">Description</div>
-                        <div class="value"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td>
-                        <div class="filed big">Test Links</div>
-                        <div class="value"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td>
-                        <div class="filed big">OSVDB Entries</div>
-                        <div class="value">OSVDB-0</div>
-                    </td>
-                </tr>
-
-            </table>
-        </div>
-
-        <div id="zapScan" class="hide">.</div>
-        <div class="report" >
-            <div class="reportName">
-                Owasp Zap scan
-            </div>
-            <div class="subReportName">
-                Owasp Zap scan report
-            </div>
-            <div class="attackDetails">
-                <span class="details">Attack details:</span>
-                <span>- <span class="big">Used tool </span> : hydra</span>
-                <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
-                <span>- <span class="big">Target IP </span> : 10.0.0.127</span>
-                <span>- <span class="big">Target Port </span> : 80 </span>
-            </div>
-            <span class="details" >Summary of alerts:</span>
-            <table class="zapTable">
-                <tr class="zapTr headTr">
-                    <th class="zapTh">Risk Level</th>
-                    <th class="zapTh">Number of alerts</th>
-                </tr>
-                <tr class="zapTr">
-                    <td class="zapTd">High</td>
-                    <td class="zapTd">0</td>
-                </tr>
-                <tr class="zapTr">
-                    <td class="zapTd">Medium</td>
-                    <td class="zapTd">2</td>
-                </tr>
-                <tr class="zapTr">
-                    <td class="zapTd">Low</td>
-                    <td class="zapTd">4</td>
-                </tr>
-                <tr class="zapTr">
-                    <td class="zapTd">Information</td>
-                    <td class="zapTd">6</td>
-                </tr>
-
-            </table>
-            <span class="details">Alert details:</span>
-            <table class="alertTable">
-                <th class="alertHead high">
-                    <div class="alertLevel">
-                        High
-                    </div>
-                    <div class="alertName">
-                        Web Browser XSS protection Not Enabled
-                    </div>
-
-                </th>
-
-                <tbody>
-                <tr class="alertTr">
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">HTTP Method</div>
-                        <div class="alertValue"> GET</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Test Links</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">OSVDB Entries</div>
-                        <div class="alertValue">OSVDB-0</div>
-                    </td>
-                </tr>
-
-                <th class="alertHead medium">
-                    <div class="alertLevel">
-                        Medium
-                    </div>
-                    <div class="alertName">
-                        Web Browser XSS protection Not Enabled
-                    </div>
-
-                </th>
-
-                <tbody>
-
-                <tr class="alertTr">
-                    <td class="alertTd ">
-                        <div class="alertFiled big">Description</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">HTTP Method</div>
-                        <div class="alertValue"> GET</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Test Links</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">OSVDB Entries</div>
-                        <div class="alertValue">OSVDB-0</div>
-                    </td>
-                </tr>
-                </tbody>
-
-                <th class="alertHead low">
-                    <div class="alertLevel">
-                        Low
-                    </div>
-                    <div class="alertName">
-                        Web Browser XSS protection Not Enabled
-                    </div>
-
-                </th>
-                <tbody>
-                <tr class="alertTr">
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">HTTP Method</div>
-                        <div class="alertValue"> GET</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Test Links</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">OSVDB Entries</div>
-                        <div class="alertValue">OSVDB-0</div>
-                    </td>
-                </tr>
-                </tbody>
-
-                <th class="alertHead successAlert">
-                    <div class="alertLevel">
-                        Information
-                    </div>
-                    <div class="alertName">
-                        Web Browser XSS protection Not Enabled
-                    </div>
-
-                </th>
-
-                <tbody>
-                <tr class="alertTr">
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="value">/Forms/NewForm.aspx</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">HTTP Method</div>
-                        <div class="alertValue"> GET</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Description</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">Test Links</div>
-                        <div class="alertValue"> /Forms/NewForm.aspx: FrontPage/Sharepointfile available.</div>
-                    </td>
-                    <td class="alertTd">
-                        <div class="alertFiled big">OSVDB Entries</div>
-                        <div class="alertValue">OSVDB-0</div>
-                    </td>
-                </tr>
-                </tbody>
-
-            </table>
-        </div>
-
-
+    </div>
 
     </div>
-</div>
-
-</div>
 
 
 
