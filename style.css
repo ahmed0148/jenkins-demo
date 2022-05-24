@@ -122,18 +122,15 @@ width: 20%;
 display: block;
 }
 .failAlert{
-
-    color: #721c24;
-background-color: #f8d7da;
-border-color: #f5c6cb;
-
+    background-color: #f44336; /* Red */
+    border-left: 5px solid #df180a;
 
 }
 .successAlert{
 
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+    color: #fff;
+    background-color: #04AA6D;
+    border-left: 5px solid #006641;
 
 }
 .big{
@@ -147,27 +144,28 @@ border-color: #f5c6cb;
     font-size: 1.1rem;
 }
 .infoAlert{
-color: #004085;
-background-color: #cce5ff;
-border-color: #b8daff;
+    color: #fff;
+    background-color: #2196F3;
+    border-left: 5px solid #066ec4;
 
 
 }
 .warningAlert{
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
+    color: #fff;
+    background-color: #ff9800;
+    border-left: 5px solid #b86f02;
 
 
 }
 .myAlert{
     position: relative;
-    padding: .75rem 1.25rem;
-    border: 1px solid transparent;
+    padding: 20px;
+    color: white;
     width: 80%;
     border-radius: 5px;
     align-items: center;
     margin-top: 10px;
+
 }
 .myAlert .cred {
 display: block;
@@ -291,15 +289,20 @@ margin-top: 10px;
     background-color:rgb(248, 245, 245) ;
 }
 .high{
-background-color: #dc3545;
+background-color: #f44336;
 }
 .medium{
     background-color: #F66B0E;
 }
 .low{
-    background-color: #FFED86;
+    background-color: #ff9800;
 }
+
 .hide{
 color: white;
 margin-bottom: 55px;
+}
+.niktoTabale{
+    border-left: 5px solid #066ec4;
+
 }
