@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 
 import java.util.Date;
@@ -16,11 +14,188 @@ import java.util.Date;
 class Tests {
 
     private static FileWriter file;
+    String top = "<!DOCTYPE html>\n" +
+            "<html lang=\"en\">\n" +
+            "\n" +
+            "<head>\n" +
+            "    <meta charset=\"UTF-8\">\n" +
+            "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "    <title>Document</title>\n" +
+            "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
+            "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n" +
+            "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n" +
+            "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">\n" +
+            "\n" +
+            "</head>\n" +
+            "\n" +
+            "<body>\n" +
+            "    <nav id=\"DOSAttack\">\n" +
+            "        <div class=\"reportTitle\">\n" +
+            "            <span>Penetration test report</span>\n" +
+            "        </div>\n" +
+            "        <div class=\"reportDate\">\n" +
+            "            <span>date datedate</span>\n" +
+            "        </div>\n" +
+            "    </nav>\n" +
+            "    <div class=\"container\">\n" +
+            "        <div class=\"sideBar\">\n" +
+            "            <a class=\"scan\" href=\"#\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"dos.png\" alt=\"\">\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Dos Attack\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "            <a class=\"scan\" href=\"#bruteForce\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Brute force attack\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "\n" +
+            "            </a>\n" +
+            "\n" +
+            "\n" +
+            "            </a>\n" +
+            "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        SQL Injection Scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "                \n" +
+            "            </a>\n" +
+            "            <a href=\"#niktoScan\" class=\"scan\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"nikto.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Nikto scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "\n" +
+            "            <a class=\"scan\" href=\"#zapScan\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"zapscan.jpg\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Owasp zap scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "        </div>\n" +
+            "        <div class=\"content\">";
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    String end="\n" +
+            "\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "\n" +
+            "    </div>\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "</body>\n" +
+            "\n" +
+            "</html>";
+    public void main(String[] args) throws IOException, InterruptedException {
+        String bruteForceReport=bruteForceAttack();
+
+        String body=bruteForceReport;
+        String path="index.html";
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.println(this.top+body+this.end);
+        writer.flush();
+        writer.close();
+
+
+    }
+public  static String bruteForceAttack() throws IOException, InterruptedException {
+    JSONObject hydraReportSSH = hydraScanSSH();
+    JSONObject hydraReportLogin = hydraScanLogin();
+    String numberOfTriesSSH=""+hydraReportSSH.get("Number of tries");
+    String numberOfTriesLogin=""+hydraReportLogin.get("Number of tries");
+       String loginResult="";
+    String SSHResults="";
+
+    if (hydraReportLogin.get("success").toString().equals("false")){
+        loginResult="                <div class=\"successAlert myAlert\">\n" +
+                "                    0 valide credantials\n" +
+                "                </div>";
+    }
+    else {
+        loginResult="                <div class=\"failAlert myAlert\">\n" +
+                "                    <span class=\"cred\"> Credantials: </span>\n" ;
+
+        JSONArray arr= (JSONArray) hydraReportLogin.get("results");
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject o= (JSONObject) arr.get(i);
+         loginResult+= "                    <span class=\"cred\"><span class=\"big\"> - Username : </span>"+o.get("username")+" <span class=\"big\"> Password :"+o.get("username")+" </span>\n";
+
+
+
+        }
+        loginResult+="  </div>\n";
 
     }
 
+    if (hydraReportSSH.get("success").toString().equals("false")){
+        SSHResults="<div class=\"successAlert myAlert\">\n" +
+                "                    0 valide credantials\n" +
+                "                </div>";
+    }
+    String bruteForceReport="            <div class=\"report\" >\n" +
+            "\n" +
+            "                <div class=\"reportName\">\n" +
+            "                    Brute Force attack\n" +
+            "                </div>\n" +
+            "                <div class=\"subReportName\">\n" +
+            "                    Brute Force attack report\n" +
+            "                </div>\n" +
+            "                <div class=\"attackDetails\">\n" +
+            "                    <span class=\"details\">Attack details:</span>\n" +
+            "                    <span>- <span class=\"big\">Used tool </span> : hydra</span>\n" +
+            "                    <span>- <span class=\"big\">Target hostname </span> : local-tt.dev-machinestalk.com </span>\n" +
+            "                    <span>- <span class=\"big\">Target SSH Address </span> : ssh://10.0.0.127:22 </span>\n" +
+            "                    <span>- <span class=\"big\">Number of login tries </span> :"+numberOfTriesLogin+" </span>\n" +
+            "                    <span>- <span class=\"big\">Number of SSH tries </span> : "+numberOfTriesSSH+"</span>\n" +
+            "                    <span>- <span class=\"big\"> Login Usernames list </span> :<a href=\"Login_Usernames.txt\">Login\n" +
+            "                            usernames</a></span>\n" +
+            "                    <span>- <span class=\"big\">Login Passwords list </span> :<a href=\"Login_Passwords.txt\">Login passwords</a></span>\n" +
+            "                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a href=\"SSH_Usernames.txt\">SSH usernames</a></span>\n" +
+            "                    <span>- <span class=\"big\">SSH Passwords list </span> :<a href=\"SSH_Usernames.txt\">SSH passwords</a></span>\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <span class=\"details\">Login page Result:</span>\n" +
+            "\n" +
+            loginResult+
+            "                <br>\n" +
+            "                <span class=\"details\">SSH Result:</span>\n" +
+            SSHResults+
+            "            </div>";
+
+
+    //            String s="[ATTEMPT] target local-iam.dev-machinestalk.com - login \"test\" - pass \"PublishThisListPlease\" - 1 of 300 [child 0] (0/0)\n";
+
+ return bruteForceReport;
+}
     public static String dosReportBloc(String result, String url) {
         String bloc1 = "          <div class=\"report\">                 <div class=\"reportName\">                     Dos attack                 </div>                 <div class=\"subReportName\">                     Dos attack report                 </div>                 <div class=\"attackDetails\">                  <span class=\"details\">Attack details:</span>                     <span>- Used tool : hping3</span>                     <span>- number of sent packets : 10000 </span>                     <span>- number of seconds between sending each packet : 10 packets peer second</span>                     <span>- packet body size : 120 bytes</span>    <span>- Website : " + url + "</span>                 </div>";
         String bloc2 = "";
@@ -35,182 +210,15 @@ class Tests {
 
     @Test
     public void testZero() throws IOException, InterruptedException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        String cureentDate = formatter.format(date);
-        System.out.println("=========================================================================================================");
-        System.out.println("=========================================================================================================");
-        System.out.println(cureentDate);
 
-        JSONObject hydraReportSSH = hydraScanSSH();
-        JSONObject hydraReportLogin = hydraScanLogin();
-        String numberOfTriesSSH=""+hydraReportSSH.get("Number of tries");
-        String numberOfTriesLogin=""+hydraReportLogin.get("Number of tries");
-        String top = "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
-                "\n" +
-                "<head>\n" +
-                "    <meta charset=\"UTF-8\">\n" +
-                "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
-                "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-                "    <title>Document</title>\n" +
-                "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
-                "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n" +
-                "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n" +
-                "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">\n" +
-                "\n" +
-                "</head>\n" +
-                "\n" +
-                "<body>\n" +
-                "    <nav id=\"DOSAttack\">\n" +
-                "        <div class=\"reportTitle\">\n" +
-                "            <span>Penetration test report</span>\n" +
-                "        </div>\n" +
-                "        <div class=\"reportDate\">\n" +
-                "            <span>date date</span>\n" +
-                "        </div>\n" +
-                "    </nav>\n" +
-                "    <div class=\"container\">\n" +
-                "        <div class=\"sideBar\">\n" +
-                "            <a class=\"scan\" href=\"#\">\n" +
-                "                <div class=\"image\">\n" +
-                "                    <img class=\"scanImg\" src=\"dos.png\" alt=\"\">\n" +
-                "                </div>\n" +
-                "                <div class=\"name\">\n" +
-                "                    <span class=\"attackName\">\n" +
-                "                        Dos Attack\n" +
-                "                    </span>\n" +
-                "                </div>\n" +
-                "            </a>\n" +
-                "            <a class=\"scan\" href=\"#bruteForce\">\n" +
-                "                <div class=\"image\">\n" +
-                "                    <img class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">\n" +
-                "\n" +
-                "                </div>\n" +
-                "                <div class=\"name\">\n" +
-                "                    <span class=\"attackName\">\n" +
-                "                        Brute force attack\n" +
-                "                    </span>\n" +
-                "                </div>\n" +
-                "\n" +
-                "            </a>\n" +
-                "\n" +
-                "\n" +
-                "            </a>\n" +
-                "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
-                "                <div class=\"image\">\n" +
-                "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
-                "\n" +
-                "                </div>\n" +
-                "                <div class=\"name\">\n" +
-                "                    <span class=\"attackName\">\n" +
-                "                        SQL Injection Scan\n" +
-                "                    </span>\n" +
-                "                </div>\n" +
-                "                \n" +
-                "            </a>\n" +
-                "            <a href=\"#niktoScan\" class=\"scan\">\n" +
-                "                <div class=\"image\">\n" +
-                "                    <img class=\"scanImg\" src=\"nikto.png\" alt=\"\">\n" +
-                "\n" +
-                "                </div>\n" +
-                "                <div class=\"name\">\n" +
-                "                    <span class=\"attackName\">\n" +
-                "                        Nikto scan\n" +
-                "                    </span>\n" +
-                "                </div>\n" +
-                "            </a>\n" +
-                "\n" +
-                "            <a class=\"scan\" href=\"#zapScan\">\n" +
-                "                <div class=\"image\">\n" +
-                "                    <img class=\"scanImg\" src=\"zapscan.jpg\" alt=\"\">\n" +
-                "\n" +
-                "                </div>\n" +
-                "                <div class=\"name\">\n" +
-                "                    <span class=\"attackName\">\n" +
-                "                        Owasp zap scan\n" +
-                "                    </span>\n" +
-                "                </div>\n" +
-                "            </a>\n" +
-                "        </div>\n" +
-                "        <div class=\"content\">";
+        String bruteForceReport=bruteForceAttack();
 
-        String end="\n" +
-                "\n" +
-                "        </div>\n" +
-                "    </div>\n" +
-                "\n" +
-                "    </div>\n" +
-                "\n" +
-                "\n" +
-                "\n" +
-                "</body>\n" +
-                "\n" +
-                "</html>";
-        String SSHResults="                <div class=\"successAlert myAlert\">\n" +
-                "                    0 valide credantials\n" +
-                "                </div>\n" +
-                "                <div class=\"failAlert myAlert\">\n" +
-                "                    <span class=\"cred\"> Credantials: </span>\n" +
-                "                    <span class=\"cred\"><span class=\"big\"> - username : </span>test <span class=\"big\"> Password :</span>\n" +
-                "                        pass123</span>\n" +
-                "                    <span class=\"cred\"><span class=\"big\"> - username : </span>test <span class=\"big\"> Password :</span>\n" +
-                "                        pass123</span>\n" +
-                "\n" +
-                "                </div>";
-        String LoginResults="             <div class=\"successAlert myAlert\">\n" +
-                "                    0 valide credantials\n" +
-                "                </div>\n" +
-                "                <div class=\"failAlert myAlert\">\n" +
-                "                    <span class=\"cred\"> Credantials: </span>\n" +
-                "                    <span class=\"cred\"><span class=\"big\"> - username : </span>test <span class=\"big\"> Password :</span>\n" +
-                "                        pass123</span>\n" +
-                "                    <span class=\"cred\"><span class=\"big\"> - username : </span>test <span class=\"big\"> Password :</span>\n" +
-                "                        \n" +
-                "                </div>";
-        String bruteForceReport="            <div class=\"report\" >\n" +
-                "\n" +
-                "                <div class=\"reportName\">\n" +
-                "                    Brute Force attack\n" +
-                "                </div>\n" +
-                "                <div class=\"subReportName\">\n" +
-                "                    Brute Force attack report\n" +
-                "                </div>\n" +
-                "                <div class=\"attackDetails\">\n" +
-                "                    <span class=\"details\">Attack details:</span>\n" +
-                "                    <span>- <span class=\"big\">Used tool </span> : hydra</span>\n" +
-                "                    <span>- <span class=\"big\">Target hostname </span> : local-tt.dev-machinestalk.com </span>\n" +
-                "                    <span>- <span class=\"big\">Target SSH Address </span> : ssh://10.0.0.127:22 </span>\n" +
-                "                    <span>- <span class=\"big\">Number of login tries </span> :"+numberOfTriesLogin+" </span>\n" +
-                "                    <span>- <span class=\"big\">Number of SSH tries </span> : "+numberOfTriesSSH+"</span>\n" +
-                "                    <span>- <span class=\"big\"> Login Usernames list </span> :href=\"Login_Usernames.txt\"Login\n" +
-                "                            usernames</a></span>\n" +
-                "                    <span>- <span class=\"big\">Login Passwords list </span> :<a href=\"Login_Passwords.txt\">Login passwords</a></span>\n" +
-                "                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a href=\"SSH_Usernames.txt\">SSH usernames</a></span>\n" +
-                "                    <span>- <span class=\"big\">SSH Passwords list </span> :<a href=\"SSH_Usernames.txt\">SSH passwords</a></span>\n" +
-                "\n" +
-                "                </div>\n" +
-                "                <span class=\"details\">Login page Result:</span>\n" +
-                "\n" +
-                LoginResults+
-                "                <br>\n" +
-                "                <span class=\"details\">SSH Result:</span>\n" +
-                SSHResults+
-                "            </div>";
-
-
-        //            String s="[ATTEMPT] target local-iam.dev-machinestalk.com - login \"test\" - pass \"PublishThisListPlease\" - 1 of 300 [child 0] (0/0)\n";
+        String body=bruteForceReport;
         String path="index.html";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
-        writer.println(top+bruteForceReport+end);
+        writer.println(this.top+body+this.end);
         writer.flush();
         writer.close();
-//      System.out.println(SQLMapScan("local-iam.dev-machinestalk.com/auth/","username=hello&password=hello%3A%29",1).toString());
-
-
-
-
-
 
 
 
@@ -258,12 +266,11 @@ class Tests {
                 }
             }
 
-            if (s.startsWith("[80][http-post-forjm]")) {
+            if (s.startsWith("[80][http-post-form]")) {
                 JSONObject rst = new JSONObject();
                 rst.put("username", s.substring(s.indexOf("login: ") + 7, s.indexOf("   password:")));
                 rst.put("password", s.indexOf("password: ") + ("password: ").length());
                 results.put(rst);
-
             }
         }
 
@@ -276,7 +283,6 @@ class Tests {
         obj.put("success", !results.isEmpty());
         String finalShit = obj.toString(2);
         System.out.println(finalShit);
-        System.out.println("----------------------");
         return obj;
 
     }
@@ -297,7 +303,6 @@ class Tests {
         JSONArray results = new JSONArray();
         while ((s = br.readLine()) != null) {
             if (s.startsWith("[DATA] max 4")) {
-                System.out.println(s.substring(s.indexOf("tasks, ") + ("tasks, ").length(), s.indexOf(" login")));
 
 
                 numberOfTries = Integer.parseInt(s.substring(s.indexOf("tasks, ") + ("tasks, ").length(), s.indexOf(" login")));
@@ -306,7 +311,6 @@ class Tests {
                 success = !(Integer.parseInt(s.substring(s.indexOf("completed, ") + ("completed, ").length(), s.indexOf(" valid"))) == 0);
             }
 
-            System.out.println(s);
         }
         p.waitFor();
         p.destroy();
@@ -338,7 +342,6 @@ class Tests {
         boolean loop = true;
         while (loop) {
             s = br.readLine();
-            System.out.println(s);
 
             if (s.contains("<?xml version")) {
                 save = true;
