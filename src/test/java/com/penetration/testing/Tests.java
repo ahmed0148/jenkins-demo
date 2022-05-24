@@ -15,8 +15,61 @@ class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
+    System.out.println(niktoScan().toString(2));
 
+}
+public String niktoReport() throws IOException, InterruptedException {
+    JSONObject niktoReport=niktoScan();
+    String elapsedTime= (String) niktoReport.get("Elapsed Time");
+    String top="  <div id=\"niktoScan\" class=\"hide\">.</div>\n" +
+            "\n" +
+            "            <div class=\"report\" >\n" +
+            "                <div class=\"reportName\">\n" +
+            "                    Nikto scan\n" +
+            "                </div>\n" +
+            "                \n" +
+            "                <div class=\"subReportName\">\n" +
+            "                    Nikto scan report\n" +
+            "                </div>\n" +
+            "                <div class=\"attackDetails\">\n" +
+            "                    <span class=\"details\">Attack details:</span>\n" +
+            "                    <span>- <span class=\"big\">Used tool </span> : Nikto</span>\n" +
+            "                    <span>- <span class=\"big\">Target hostname </span> : local-tt.dev-machinestalk.com </span>\n" +
+            "                    <span>- <span class=\"big\">Target IP </span> : 10.0.0.127</span>\n" +
+            "                    <span>- <span class=\"big\">Target Port </span> : 80 </span>\n" +
+            "                    <span>- <span class=\"big\">Elapsed Time </span> : "+elapsedTime+" seconds</span>\n" +
+            "                </div>\n" +
+            "                <span class=\"details\">Vulnerabilities list :</span>\n" +
+            "                <table class=\"niktoTabale\">";
+    String body="";
+    JSONArray arr=niktoReport.getJSONArray("vunerabilities");
+    for (Object el:arr
+         ) {
+        JSONObject on=(JSONObject) el;
+        body+="                    <tr>\n" +
+                "                        <td>\n" +
+                "                            <div class=\"filed big\">HTTP Method</div>\n" +
+                "                            <div class=\"value\"> GET</div>\n" +
+                "                        </td>\n" +
+                "                        <td>\n" +
+                "                            <div class=\"filed big\">Description</div>\n" +
+                "                            <div class=\"value\"> "+on.get("description")+"</div>\n" +
+                "                        </td>\n" +
+                "                        <td>\n" +
+                "                            <div class=\"filed big\">Test Links</div>\n" +
+                "                            <div class=\"value\"> "+on.get("test link")+"</div>\n" +
+                "                        </td>\n" +
+                "                        <td>\n" +
+                "                            <div class=\"filed big\">OSVDB Entries</div>\n" +
+                "                            <div class=\"value\">"+on.get("vulnerability name")+"</div>\n" +
+                "                        </td>\n" +
+                "                    </tr>";
 
+    }
+    String end="\n" +
+            "                </table>\n" +
+            "            </div>";
+    return top+body+end;
 }
 public static String SQLScanReport() throws IOException, InterruptedException {
     JSONObject SQLReport=SQLMapScan("local-iam.dev-machinestalk.com/auth/","username=hello&password=hello%3A%29",1);
@@ -235,7 +288,7 @@ public void testZero() throws IOException, InterruptedException {
             "</html>";
 
 
-    String body=bruteForceAttack()+SQLScanReport();
+    String body=bruteForceAttack()+SQLScanReport()+niktoReport();
 
     String path="index.html";
     PrintWriter writer = new PrintWriter(path, "UTF-8");
