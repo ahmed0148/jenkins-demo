@@ -53,7 +53,7 @@ public String niktoReport() throws IOException, InterruptedException {
                 "                        </td>\n" +
                 "                        <td>\n" +
                 "                            <div class=\"filed big\">Description</div>\n" +
-                "                            <div class=\"value\"> "+on.get("description")+"</div>\n" +
+                "                            <div class=\"value\"> "+on.get("Description")+"</div>\n" +
                 "                        </td>\n" +
                 "                        <td>\n" +
                 "                            <div class=\"filed big\">Test Links</div>\n" +
