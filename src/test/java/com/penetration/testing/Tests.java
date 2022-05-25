@@ -509,11 +509,7 @@ while ((s = br.readLine()) != null) {
     }
 
     if (s.startsWith("+ /")) {
-        JSONObject vulJson = new JSONObject();
-        vulJson.put("Vulnerability name", "OSVDB-0");
-        vulJson.put("Description", s.substring(s.indexOf(":") + 2));
-        vulJson.put("Test link", "http://local-tt.dev-machinestalk.com:80" + s.substring(s.indexOf("/"), s.indexOf(":")));
-        vulsArray.put(vulJson);
+     continue;
     }
     if (s.startsWith("+ End Time: ")) {
         elapsedTime = s.substring(s.indexOf("seconds") - 3, s.indexOf("seconds") + "seconds".length());
