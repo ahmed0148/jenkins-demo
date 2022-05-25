@@ -7,18 +7,31 @@ import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.text.SimpleDateFormat;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-    System.out.println(niktoScan().toString(2));
+
+    String top = top();
+    String end = end();
+    String body=niktoReport();
+    String path="index.html";
+    PrintWriter writer = new PrintWriter(path, "UTF-8");
+    writer.println(top+body+end);
+    writer.flush();
+    writer.close();
+
+
+
+
+
 
 }
-public String niktoReport() throws IOException, InterruptedException {
+public static String niktoReport() throws IOException, InterruptedException {
     JSONObject niktoReport=niktoScan();
     String elapsedTime= (String) niktoReport.get("Elapsed Time");
     String top="  <div id=\"niktoScan\" class=\"hide\">.</div>\n" +
@@ -185,111 +198,9 @@ return bruteForceReport;
 @Test
 public void testZero() throws IOException, InterruptedException {
 
-    String top = "<!DOCTYPE html>\n" +
-            "<html lang=\"en\">\n" +
-            "\n" +
-            "<head>\n" +
-            "    <meta charset=\"UTF-8\">\n" +
-            "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
-            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-            "    <title>Document</title>\n" +
-            "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
-            "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n" +
-            "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n" +
-            "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">\n" +
-            "\n" +
-            "</head>\n" +
-            "\n" +
-            "<body>\n" +
-            "    <nav id=\"DOSAttack\">\n" +
-            "        <div class=\"reportTitle\">\n" +
-            "            <span>Penetration test report</span>\n" +
-            "        </div>\n" +
-            "        <div class=\"reportDate\">\n" +
-            "            <span>date datedate</span>\n" +
-            "        </div>\n" +
-            "    </nav>\n" +
-            "    <div class=\"container\">\n" +
-            "        <div class=\"sideBar\">\n" +
-            "            <a class=\"scan\" href=\"#\">\n" +
-            "                <div class=\"image\">\n" +
-            "                    <img class=\"scanImg\" src=\"dos.png\" alt=\"\">\n" +
-            "                </div>\n" +
-            "                <div class=\"name\">\n" +
-            "                    <span class=\"attackName\">\n" +
-            "                        Dos Attack\n" +
-            "                    </span>\n" +
-            "                </div>\n" +
-            "            </a>\n" +
-            "            <a class=\"scan\" href=\"#bruteForce\">\n" +
-            "                <div class=\"image\">\n" +
-            "                    <img class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">\n" +
-            "\n" +
-            "                </div>\n" +
-            "                <div class=\"name\">\n" +
-            "                    <span class=\"attackName\">\n" +
-            "                        Brute force attack\n" +
-            "                    </span>\n" +
-            "                </div>\n" +
-            "\n" +
-            "            </a>\n" +
-            "\n" +
-            "\n" +
-            "            </a>\n" +
-            "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
-            "                <div class=\"image\">\n" +
-            "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
-            "\n" +
-            "                </div>\n" +
-            "                <div class=\"name\">\n" +
-            "                    <span class=\"attackName\">\n" +
-            "                        SQL Injection Scan\n" +
-            "                    </span>\n" +
-            "                </div>\n" +
-            "                \n" +
-            "            </a>\n" +
-            "            <a href=\"#niktoScan\" class=\"scan\">\n" +
-            "                <div class=\"image\">\n" +
-            "                    <img class=\"scanImg\" src=\"nikto.png\" alt=\"\">\n" +
-            "\n" +
-            "                </div>\n" +
-            "                <div class=\"name\">\n" +
-            "                    <span class=\"attackName\">\n" +
-            "                        Nikto scan\n" +
-            "                    </span>\n" +
-            "                </div>\n" +
-            "            </a>\n" +
-            "\n" +
-            "            <a class=\"scan\" href=\"#zapScan\">\n" +
-            "                <div class=\"image\">\n" +
-            "                    <img class=\"scanImg\" src=\"zapscan.jpg\" alt=\"\">\n" +
-            "\n" +
-            "                </div>\n" +
-            "                <div class=\"name\">\n" +
-            "                    <span class=\"attackName\">\n" +
-            "                        Owasp zap scan\n" +
-            "                    </span>\n" +
-            "                </div>\n" +
-            "            </a>\n" +
-            "        </div>\n" +
-            "        <div class=\"content\">";
-
-    String end="\n" +
-            "\n" +
-            "        </div>\n" +
-            "    </div>\n" +
-            "\n" +
-            "    </div>\n" +
-            "\n" +
-            "\n" +
-            "\n" +
-            "</body>\n" +
-            "\n" +
-            "</html>";
-
-
-    String body=bruteForceAttack()+SQLScanReport()+niktoReport();
-
+    String top = top();
+    String end = end();
+    String body=niktoReport();
     String path="index.html";
     PrintWriter writer = new PrintWriter(path, "UTF-8");
     writer.println(top+body+end);
@@ -303,7 +214,7 @@ public void testZero() throws IOException, InterruptedException {
 
 
 
-System.out.println("=========================================================================================================");
+    System.out.println("=========================================================================================================");
 System.out.println("=========================================================================================================");
 
 }
@@ -498,16 +409,23 @@ JSONObject obj2 = new JSONObject();
 JSONArray vulsArray = null;
 vulsArray = new JSONArray();
 String elapsedTime = "";
-while ((s = br.readLine()) != null) {
-    if (s.startsWith("+ OSVDB")) {
-        JSONObject vulJson = new JSONObject();
+    List<String> vulNames = new ArrayList<>();
+    List<String> desc = new ArrayList<>();
+    while ((s = br.readLine()) != null) {
         String str = s.substring(s.indexOf(":") + 2);
+
+        if (s.startsWith("+ OSVDB")) {
+        JSONObject vulJson = new JSONObject();
+         if (cont(vulNames,s.substring(s.indexOf("+ ")+2,s.indexOf(":")))||cont(desc,str.substring(str.indexOf(":") + 2).substring(0,4)))
+             continue;
+        vulNames.add(s.substring(s.indexOf("+ ")+2,s.indexOf(":")));
+        desc.add(str.substring(str.indexOf(":") + 2));
         vulJson.put("Vulnerability name", s.substring(s.indexOf("OSVDB"), s.indexOf(":")));
         vulJson.put("Description", str.substring(str.indexOf(":") + 2));
         vulJson.put("Test link", "http://local-tt.dev-machinestalk.com:80" + str.substring(str.indexOf("/"), str.indexOf(":")));
         vulsArray.put(vulJson);
+            System.out.println(desc.toString());
     }
-
     if (s.startsWith("+ /")) {
      continue;
     }
@@ -524,7 +442,14 @@ p.waitFor();
 p.destroy();
 return obj;
 }
-
+public static boolean cont(List<String> list,String str){
+    for (String st:
+         list) {
+        if (st.contains(str))
+            return true;
+    }
+    return false;
+}
 public static JSONObject Dos(String url) throws IOException, InterruptedException {
 System.out.println("dos attack is running");
 String prefix = "/bin/bash";
@@ -543,5 +468,112 @@ obj2.put("result", !InetAddress.getByName(url).isReachable(20));
 obj.put("Dos attack", obj2);
 p.destroy();
 return obj2;
+}
+public static String top(){
+    String top="<!DOCTYPE html>\n" +
+            "<html lang=\"en\">\n" +
+            "\n" +
+            "<head>\n" +
+            "    <meta charset=\"UTF-8\">\n" +
+            "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n" +
+            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+            "    <title>Document</title>\n" +
+            "    <link rel=\"stylesheet\" href=\"style.css\">\n" +
+            "    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n" +
+            "    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n" +
+            "    <link href=\"https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap\" rel=\"stylesheet\">\n" +
+            "\n" +
+            "</head>\n" +
+            "\n" +
+            "<body>\n" +
+            "    <nav id=\"DOSAttack\">\n" +
+            "        <div class=\"reportTitle\">\n" +
+            "            <span>Penetration test report</span>\n" +
+            "        </div>\n" +
+            "        <div class=\"reportDate\">\n" +
+            "            <span>date date</span>\n" +
+            "        </div>\n" +
+            "    </nav>\n" +
+            "    <div class=\"container\">\n" +
+            "        <div class=\"sideBar\">\n" +
+            "            <a class=\"scan\" href=\"#\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"dos.png\" alt=\"\">\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Dos Attack\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "            <a class=\"scan\" href=\"#bruteForce\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Brute force attack\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "\n" +
+            "            </a>\n" +
+            "\n" +
+            "\n" +
+            "            </a>\n" +
+            "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        SQL Injection Scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "                \n" +
+            "            </a>\n" +
+            "            <a href=\"#niktoScan\" class=\"scan\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"nikto.png\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Nikto scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "\n" +
+            "            <a class=\"scan\" href=\"#zapScan\">\n" +
+            "                <div class=\"image\">\n" +
+            "                    <img class=\"scanImg\" src=\"zapscan.jpg\" alt=\"\">\n" +
+            "\n" +
+            "                </div>\n" +
+            "                <div class=\"name\">\n" +
+            "                    <span class=\"attackName\">\n" +
+            "                        Owasp zap scan\n" +
+            "                    </span>\n" +
+            "                </div>\n" +
+            "            </a>\n" +
+            "        </div>\n" +
+            "        <div class=\"content\">";
+    return top;
+}
+public static String end(){
+    String end="\n" +
+            "\n" +
+            "        </div>\n" +
+            "    </div>\n" +
+            "\n" +
+            "    </div>\n" +
+            "\n" +
+            "\n" +
+            "\n" +
+            "</body>\n" +
+            "\n" +
+            "</html>";
+    return end;
+
 }
 }

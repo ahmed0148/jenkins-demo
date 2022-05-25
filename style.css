@@ -95,6 +95,7 @@ width: 20%;
     padding-top: 20px;
     position: relative;
     left: 21%;
+    width:1100px;
 
  }
 
@@ -304,6 +305,5 @@ margin-bottom: 55px;
 }
 .niktoTabale{
     border-left: 5px solid #066ec4;
-    width: 1100px;
 
 }
