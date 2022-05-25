@@ -450,6 +450,8 @@ while ((s = br.readLine()) != null) {
 
     System.out.println(s);
     if (s.contains("INFO")) {
+        if (s.contains("Microsoft"))
+            continue;
         info.put(s.substring(s.indexOf("[INFO]") + "[INFO] ".length()));
     }
     if (s.contains("WARNING")) {
@@ -502,7 +504,7 @@ while ((s = br.readLine()) != null) {
         String str = s.substring(s.indexOf(":") + 2);
         vulJson.put("Vulnerability name", s.substring(s.indexOf("OSVDB"), s.indexOf(":")));
         vulJson.put("Description", str.substring(str.indexOf(":") + 2));
-        vulJson.put("Test link name", "http://local-tt.dev-machinestalk.com:80" + str.substring(str.indexOf("/"), str.indexOf(":")));
+        vulJson.put("Test link", "http://local-tt.dev-machinestalk.com:80" + str.substring(str.indexOf("/"), str.indexOf(":")));
         vulsArray.put(vulJson);
     }
     if (s.startsWith("+ /")) {
