@@ -16,17 +16,7 @@ class Tests {
 
 public static void main(String[] args) throws IOException, InterruptedException {
 
-    String top = top();
-    String end = end();
-    String body=niktoReport();
-    String path="index.html";
-    PrintWriter writer = new PrintWriter(path, "UTF-8");
-    writer.println(top+body+end);
-    writer.flush();
-    writer.close();
-
-
-
+niktoScan();
 
 
 
@@ -200,7 +190,7 @@ public void testZero() throws IOException, InterruptedException {
 
     String top = top();
     String end = end();
-    String body=niktoReport();
+    String body=SQLScanReport()+bruteForceAttack()+ niktoReport();
     String path="index.html";
     PrintWriter writer = new PrintWriter(path, "UTF-8");
     writer.println(top+body+end);
@@ -412,6 +402,7 @@ String elapsedTime = "";
     List<String> vulNames = new ArrayList<>();
     List<String> desc = new ArrayList<>();
     while ((s = br.readLine()) != null) {
+        System.out.println(s);
         String str = s.substring(s.indexOf(":") + 2);
 
         if (s.startsWith("+ OSVDB")) {
