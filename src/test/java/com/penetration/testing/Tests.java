@@ -508,7 +508,7 @@ while ((s = br.readLine()) != null) {
     if (s.startsWith("+ /")) {
         JSONObject vulJson = new JSONObject();
         vulJson.put("vulnerability name", "OSVDB-0");
-        vulJson.put("description", s.substring(s.indexOf(":") + 2));
+        vulJson.put("Description", s.substring(s.indexOf(":") + 2));
         vulJson.put("test link", "http://local-tt.dev-machinestalk.com:80" + s.substring(s.indexOf("/"), s.indexOf(":")));
         vulsArray.put(vulJson);
     }
