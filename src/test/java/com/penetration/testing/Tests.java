@@ -57,7 +57,7 @@ public String niktoReport() throws IOException, InterruptedException {
                 "                        </td>\n" +
                 "                        <td>\n" +
                 "                            <div class=\"filed big\">Test Links</div>\n" +
-                "                            <div class=\"value\"> "+on.get("test link")+"</div>\n" +
+                "                            <div class=\"value\"> "+on.get("Test link")+"</div>\n" +
                 "                        </td>\n" +
                 "                        <td>\n" +
                 "                            <div class=\"filed big\">OSVDB Entries</div>\n" +
@@ -507,11 +507,12 @@ while ((s = br.readLine()) != null) {
         vulJson.put("Test link", "http://local-tt.dev-machinestalk.com:80" + str.substring(str.indexOf("/"), str.indexOf(":")));
         vulsArray.put(vulJson);
     }
+
     if (s.startsWith("+ /")) {
         JSONObject vulJson = new JSONObject();
         vulJson.put("vulnerability name", "OSVDB-0");
         vulJson.put("Description", s.substring(s.indexOf(":") + 2));
-        vulJson.put("test link", "http://local-tt.dev-machinestalk.com:80" + s.substring(s.indexOf("/"), s.indexOf(":")));
+        vulJson.put("Test link", "http://local-tt.dev-machinestalk.com:80" + s.substring(s.indexOf("/"), s.indexOf(":")));
         vulsArray.put(vulJson);
     }
     if (s.startsWith("+ End Time: ")) {
