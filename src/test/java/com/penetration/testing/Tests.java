@@ -92,7 +92,7 @@ String end="\n" +
 }
 
 public static String zapScanReport() throws IOException, InterruptedException {
-JSONObject zapScanReportObj=niktoScan();
+JSONObject zapScanReportObj=zapScan();
 JSONObject OWASPZAPReport=(JSONObject) zapScanReportObj.get("OWASPZAPReport");
 JSONObject site=(JSONObject) OWASPZAPReport.get("site");
 JSONObject alerts=(JSONObject) site.get("alerts");
