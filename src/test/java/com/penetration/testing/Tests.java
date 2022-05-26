@@ -258,7 +258,7 @@ return top+body+end;
 }
 public static String SQLScanReport() throws IOException, InterruptedException {
 JSONObject SQLReport=SQLMapScan("local-iam.dev-machinestalk.com/auth/","username=hello&password=hello%3A%29",1);
-String top="            <div id=\"SQLInjection\" class=\"hide\">.</div>\n";
+String top="";
 top +="\n" +
 "            <div class=\"report\" >\n" +
 "\n" +
@@ -544,7 +544,7 @@ if (s.contains("CRITICAL")) {
         critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length(), s.indexOf(". Try to increase")));
         continue;
     }
-    critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length()));
+//    critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length()));
 
 }
 }
