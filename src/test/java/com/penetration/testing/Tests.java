@@ -18,39 +18,19 @@ class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-
-//niktoScan();
-//    HttpURLConnection connection = null;
-//    try {
-//        URL u = new URL("http://www.google.com/");
-//        connection = (HttpURLConnection) u.openConnection();
-//        connection.setRequestMethod("HEAD");
-//        int code = connection.getResponseCode();
-//        System.out.println("" + code);
-//         You can determine on HTTP return code received. 200 is success.
-//    } catch (MalformedURLException e) {
-//         TODO Auto-generated catch block
-//        e.printStackTrace();
-//    } catch (IOException e) {
-//         TODO Auto-generated catch block
-//        e.printStackTrace();
-//    } finally {
-//        if (connection != null) {
-//            connection.disconnect();
-//        }
-//    }
-//    System.out.println(/
-//    InetAddress.getByName("local-tt.dev-machinestalk.com").isReachable(10));
-//    String top = top();
-//    String end = end();
-//    String body=dosReport();
-//    String path="index.html";
-//    PrintWriter writer = new PrintWriter(path, "UTF-8");
-//    writer.println(top+body+end);
-//    writer.flush();
-//    writer.close();
-//    System.out.println(Dos("local-tt.dev-machinestalk.com").toString(2));
-
+//    String SQLInjectionReport=SQLScanReport();
+//    String bruteForceReport=bruteForceReport();
+//    String niktoScanReport=niktoReport();
+//    String owaspZapReport=zapScanReport();
+//    String dosReport=dosReport();
+    String top = top();
+    String end = end();
+    String body="";
+    String path="index.html";
+    PrintWriter writer = new PrintWriter(path, "UTF-8");
+    writer.println(top+body+end);
+    writer.flush();
+    writer.close();
 
 }
 public static String dosReport() throws IOException, InterruptedException {
@@ -87,7 +67,7 @@ if (dosReportObj.get("result").toString().contains("false")){
     }
 String end="\n" +
     "            </div>\n" +
-    "            <div id=\"SQLInjection\" class=\"hide\">.</div>";
+    "                       <div id=\"bruteForce\" class=\"hide\">.</div>\n";
     return top+body+end;
 }
 
@@ -188,7 +168,7 @@ for (Object obj:
     "                            </td>\n" +
     "                            <td class=\"alertTd\">\n" +
     "                                <div class=\"alertFiled big\">URL</div>\n" +
-    "                                <div class=\"alertValue\"> "+inst.get("uri")+"</div>\n" +
+    "                                <div class=\"alertValue link\"> "+inst.get("uri")+"</div>\n" +
     "                            </td>\n" +
     "                            <td class=\"alertTd\">\n" +
     "                                <div class=\"alertFiled big\">Method</div>\n" +
@@ -261,7 +241,7 @@ for (Object el:arr
             "                        </td>\n" +
             "                        <td>\n" +
             "                            <div class=\"filed big\">Test Links</div>\n" +
-            "                            <div class=\"value\"> "+on.get("Test link")+"</div>\n" +
+            "                            <div class=\"value link\"> "+on.get("Test link")+"</div>\n" +
             "                        </td>\n" +
             "                        <td>\n" +
             "                            <div class=\"filed big\">OSVDB Entries</div>\n" +
@@ -273,11 +253,13 @@ for (Object el:arr
 String end="\n" +
         "                </table>\n" +
         "            </div>";
+end+="            <div id=\"zapScan\" class=\"hide\">.</div>\n";
 return top+body+end;
 }
 public static String SQLScanReport() throws IOException, InterruptedException {
 JSONObject SQLReport=SQLMapScan("local-iam.dev-machinestalk.com/auth/","username=hello&password=hello%3A%29",1);
-String top ="\n" +
+String top="            <div id=\"SQLInjection\" class=\"hide\">.</div>\n";
+top +="\n" +
 "            <div class=\"report\" >\n" +
 "\n" +
 "                <div class=\"reportName\">\n" +
@@ -367,9 +349,9 @@ String bruteForceReport="            <div class=\"report\" >\n" +
 "                    <span>- <span class=\"big\">Number of SSH tries </span> : "+numberOfTriesSSH+"</span>\n" +
 "                    <span>- <span class=\"big\"> Login Usernames list </span> :<a href=\"Login_Usernames.txt\">Login\n" +
 "                            usernames</a></span>\n" +
-"                    <span>- <span class=\"big\">Login Passwords list </span> :<a href=\"Login_Passwords.txt\">Login passwords</a></span>\n" +
-"                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a href=\"SSH_Usernames.txt\">SSH usernames</a></span>\n" +
-"                    <span>- <span class=\"big\">SSH Passwords list </span> :<a href=\"SSH_Usernames.txt\">SSH passwords</a></span>\n" +
+"                    <span>- <span class=\"big\">Login Passwords list </span> :<a class=\"link\" href=\"Login_Passwords.txt\">Login passwords</a></span>\n" +
+"                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a class=\"link\" href=\"SSH_Usernames.txt\">SSH usernames</a></span>\n" +
+"                    <span>- <span class=\"big\">SSH Passwords list </span> :<a class=\"link\" href=\"SSH_Usernames.txt\">SSH passwords</a></span>\n" +
 "\n" +
 "                </div>\n" +
 "                <span class=\"details\">Login page Result:</span>\n" +
@@ -547,7 +529,7 @@ while ((s = br.readLine()) != null) {
 
 System.out.println(s);
 if (s.contains("INFO")) {
-    if (s.contains("Microsoft")||s.contains("Oracle"))
+    if (s.contains("Microsoft")||s.contains("Oracle")||s.contains("Generic")||s.contains("MySQL")||s.contains("PostgreSQL"))
         continue;
     info.put(s.substring(s.indexOf("[INFO]") + "[INFO] ".length()));
 }
@@ -693,6 +675,19 @@ String top="<!DOCTYPE html>\n" +
         "                    </span>\n" +
         "                </div>\n" +
         "            </a>\n" +
+
+        "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
+        "                <div class=\"image\">\n" +
+        "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
+        "\n" +
+        "                </div>\n" +
+        "                <div class=\"name\">\n" +
+        "                    <span class=\"attackName\">\n" +
+        "                        SQL Injection Scan\n" +
+        "                    </span>\n" +
+        "                </div>\n" +
+        "                \n" +
+        "            </a>\n" +
         "            <a class=\"scan\" href=\"#bruteForce\">\n" +
         "                <div class=\"image\">\n" +
         "                    <img class=\"scanImg\" src=\"BruteForce.png\" alt=\"\">\n" +
@@ -707,18 +702,6 @@ String top="<!DOCTYPE html>\n" +
         "            </a>\n" +
         "\n" +
         "\n" +
-        "            </a>\n" +
-        "            <a class=\"scan\" href=\"#SQLInjection\">\n" +
-        "                <div class=\"image\">\n" +
-        "                    <img class=\"scanImg\" src=\"sqlinj.png\" alt=\"\">\n" +
-        "\n" +
-        "                </div>\n" +
-        "                <div class=\"name\">\n" +
-        "                    <span class=\"attackName\">\n" +
-        "                        SQL Injection Scan\n" +
-        "                    </span>\n" +
-        "                </div>\n" +
-        "                \n" +
         "            </a>\n" +
         "            <a href=\"#niktoScan\" class=\"scan\">\n" +
         "                <div class=\"image\">\n" +
