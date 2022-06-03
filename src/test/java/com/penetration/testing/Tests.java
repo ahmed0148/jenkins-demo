@@ -370,19 +370,23 @@ return bruteForceReport;
 
 @Test
 public void testZero() throws IOException, InterruptedException {
-    String SQLInjectionReport=SQLScanReport();
-    String bruteForceReport=bruteForceReport();
-    String niktoScanReport=niktoReport();
-    String owaspZapReport=zapScanReport();
-    String dosReport=dosReport();
-    String top = top();
-    String end = end();
-    String body=dosReport+SQLInjectionReport+bruteForceReport+niktoScanReport+owaspZapReport;
-    String path="index.html";
-    PrintWriter writer = new PrintWriter(path, "UTF-8");
-    writer.println(top+body+end);
-    writer.flush();
-    writer.close();
+//    String SQLInjectionReport=SQLScanReport();
+//    String bruteForceReport=bruteForceReport();
+//    String niktoScanReport=niktoReport();
+//    String owaspZapReport=zapScanReport();
+//    String dosReport=dosReport();
+//    String top = top();
+//    String end = end();
+//    String body=dosReport+SQLInjectionReport+bruteForceReport+niktoScanReport+owaspZapReport;
+//    String path="index.html";
+//    PrintWriter writer = new PrintWriter(path, "UTF-8");
+//    writer.println(top+body+end);
+//    writer.flush();
+//    writer.close();
+    System.out.println("======================================================");
+    System.out.println("======================================================");
+    System.out.println("======================================================");
+    System.out.println("======================================================");
 
 }
 
