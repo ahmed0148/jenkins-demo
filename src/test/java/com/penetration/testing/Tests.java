@@ -18,8 +18,7 @@ class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-
-}
+    hydraScanLogin("url");}
     @Test
     public void testZero() throws IOException, InterruptedException {
         String url="local-tt.dev-machinestalk.com";
@@ -377,7 +376,7 @@ System.out.println("hydra scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
 String hydraUrl="uat-iam.thingstalk.io";
-    String terminalCommand = "hydra -L /home/ahmed/Desktop/Login_Usernames -P /home/ahmed/Desktop/password_list.txt iam-v5.dev-machinestalk.com http-post-form \"/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json";
+    String terminalCommand = "hydra -L Login_Usernames -P Login_Passwords iam-v5.dev-machinestalk.com http-post-form \"/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json ";
     System.out.println(terminalCommand);
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 Process p = pb.start();
@@ -386,8 +385,9 @@ BufferedReader br = new BufferedReader(
 int numberOfTries = 0;
 JSONArray results = new JSONArray();
 Boolean loop=true;
+String s="";
 while (loop) {
-    String s=br.readLine();
+    s=br.readLine();
     System.out.println(s);
     if (s.startsWith("[VERBOSE] ")){
         System.out.println("yooo");
@@ -426,7 +426,7 @@ System.out.println("hydra scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
 //        String terminalCommand ="hydra -L /home/ahmed/Desktop/Login_Usernames -P /home/ahmed/Desktop/password_list.txt local-iam.dev-machinestalk.com http-post-form \"/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/login-actions/authenticate?session_code=BFX_Z-jkHIUg1eSCSzad7QwtvxP2TkGYG1AqWycxXTo&execution=11e34933-e64e-417e-88ff-8ab1ec2847c5&client_id=thingstalk&tab_id=WxWenBoK8WQ:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json\n";
-String terminalCommand = "hydra -L /home/ahmed/Desktop/SSH_Usernames -P /home/ahmed/Desktop/SSH_Passwords "+ip+" -t 4 ssh\n";
+String terminalCommand = "hydra -L SSH_Usernames -P SSH_Passwords "+ip+" -t 4 ssh\n";
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 Process p = pb.start();
 String s;
