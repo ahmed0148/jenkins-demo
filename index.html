@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz@8..144&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav id="DOSAttack">
+        <div class="reportTitle">
+            <span>Penetration test report</span>
+        </div>
+        <div class="reportDate">
+            <span>2022/06/06 13:17:24</span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="sideBar">
+            <a class="scan" href="#">
+                <div class="image">
+                    <img class="scanImg" src="dos.png" alt="">
+                </div>
+                <div class="name">
+                    <span class="attackName">
+                        Dos Attack
+                    </span>
+                </div>
+            </a>
+            <a class="scan" href="#SQLInjection">
+                <div class="image">
+                    <img class="scanImg" src="sqlinj.png" alt="">
+
+                </div>
+                <div class="name">
+                    <span class="attackName">
+                        SQL Injection Scan
+                    </span>
+                </div>
+                
+            </a>
+            <a class="scan" href="#bruteForce">
+                <div class="image">
+                    <img class="scanImg" src="BruteForce.png" alt="">
+
+                </div>
+                <div class="name">
+                    <span class="attackName">
+                        Brute force attack
+                    </span>
+                </div>
+
+            </a>
+
+
+            </a>
+            <a href="#niktoScan" class="scan">
+                <div class="image">
+                    <img class="scanImg" src="nikto.png" alt="">
+
+                </div>
+                <div class="name">
+                    <span class="attackName">
+                        Nikto scan
+                    </span>
+                </div>
+            </a>
+
+            <a class="scan" href="#zapScan">
+                <div class="image">
+                    <img class="scanImg" src="zapscan.jpg" alt="">
+
+                </div>
+                <div class="name">
+                    <span class="attackName">
+                        Owasp zap scan
+                    </span>
+                </div>
+            </a>
+        </div>
+        <div class="content">            <div class="report" >
+
+                <div class="reportName">
+                    Dos attack
+                </div>
+                <div class="subReportName">
+                    Dos attack report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool</span> : hping3</span>
+                    <span>- <span class="big">Packets number</span> : 10000 </span>
+                    <span>- <span class="big">number of seconds between sending each packet</span> : 10 packets peer
+                        second</span>
+                    <span>- <span class="big">packet body size </span> : 120 bytes</span>
+                    <span>- <span class="big">Target hostname</span> : local-tt.dev-machinestalk.com</span>
+                </div>
+
+                <span  class="details">Result:</span>                <div class="failAlert myAlert" >
+                    Dos attack succeeded
+                </div>
+            </div>
+                       <div id="bruteForce" class="hide">.</div>
+
+            <div class="report" >
+
+                <div class="reportName">
+                    SQL Injection attack
+                </div>
+                <div class="subReportName">
+                    SQL Injection attack report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool</span> : sqlmap</span>
+                    <span>- <span class="big">Target hostname</span> : local-tt.dev-machinestalk.com/auth </span>
+
+                </div>
+                <span class="details">Information:</span>
+                <div class="infoAlert myAlert">
+testing connection to the target URL                </div>                <div class="infoAlert myAlert">
+testing if the target URL content is stable                </div>                <div class="infoAlert myAlert">
+target URL content is stable                </div>                <div class="infoAlert myAlert">
+testing if POST parameter 'username' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on POST parameter 'username'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <div class="infoAlert myAlert">
+testing if POST parameter 'password' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on POST parameter 'password'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <div class="infoAlert myAlert">
+testing if GET parameter 'session_code' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on GET parameter 'session_code'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <div class="infoAlert myAlert">
+testing if GET parameter 'execution' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on GET parameter 'execution'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <div class="infoAlert myAlert">
+testing if GET parameter 'client_id' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on GET parameter 'client_id'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <div class="infoAlert myAlert">
+testing if GET parameter 'tab_id' is dynamic                </div>                <div class="infoAlert myAlert">
+testing for SQL injection on GET parameter 'tab_id'                </div>                <div class="infoAlert myAlert">
+testing 'AND boolean-based blind - WHERE or HAVING clause'                </div>                <div class="infoAlert myAlert">
+testing 'Boolean-based blind - Parameter replace (original value)'                </div>                <span class="details">result:</span>
+                <div class="successAlert myAlert">
+all tested parameters do not appear to be injectable                </div>                <br>
+      
+            </div>            <div class="report" >
+
+                <div class="reportName">
+                    Brute Force attack
+                </div>
+                <div class="subReportName">
+                    Brute Force attack report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool </span> : hydra</span>
+                    <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
+                    <span>- <span class="big">Target SSH Address </span> : ssh://10.0.0.127:22 </span>
+                    <span>- <span class="big">Number of login tries </span> :200 </span>
+                    <span>- <span class="big">Number of SSH tries </span> : 12</span>
+                    <span>- <span class="big"> Login Usernames list </span> :<a href="Login_Usernames">Login
+                            usernames</a></span>
+                    <span>- <span class="big">Login Passwords list </span> :<a class="link" href="Login_Passwords">Login passwords</a></span>
+                    <span>- <span class="big"> SSH Usernames list </span> : <a class="link" href="SSH_Usernames">SSH usernames</a></span>
+                    <span>- <span class="big">SSH Passwords list </span> :<a class="link" href="SSH_Usernames">SSH passwords</a></span>
+
+                </div>
+                <span class="details">Login page Result:</span>
+
+                <div class="successAlert myAlert">
+                    0 valide credantials
+                </div>                <br>
+                <span class="details">SSH Result:</span>
+<div class="successAlert myAlert">
+                    0 valide credantials
+                </div>            </div>  <div id="niktoScan" class="hide">.</div>
+
+            <div class="report" >
+                <div class="reportName">
+                    Nikto scan
+                </div>
+                
+                <div class="subReportName">
+                    Nikto scan report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool </span> : Nikto</span>
+                    <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
+                    <span>- <span class="big">Target IP </span> : 10.0.0.127</span>
+                    <span>- <span class="big">Target Port </span> : 80 </span>
+                    <span>- <span class="big">Elapsed Time </span> : 63 seconds seconds</span>
+                </div>
+                <span class="details">Vulnerabilities list :</span>
+                <table class="niktoTabale">                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Attackers may be able to crash FrontPage by requesting a DOS device, like shtml.exe/aux.htm -- a DoS was not attempted.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/_vti_bin/shtml.exe</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-396</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> hola-cms-1.2.9-10 may reveal the administrator ID and password.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/hola/admin/cms/htmltags.php?datei=./sec/data.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-2411</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Bookmark4U v1.8.3 include files are not protected and may contain remote source injection by using the 'prefix' variable.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/inc/common.load.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-59620</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Geeklog prior to 1.3.8-1sr2 contains a SQL injection vulnerability that lets a remote attacker reset admin password.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/geeklog/users.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-2703</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> gBook may allow admin login by setting the value 'login' equal to 'true'.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/gb/index.php?login=true</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-8204</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Displays known domains of which that server is involved.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/SiteServer/Admin/commerce/foundation/domain.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17653</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Gives a list of installed Site Server components.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/SiteServer/admin/findvserver.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17652</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Carello 1.3 may allow commands to be executed on the server by replacing hidden form elements. This could not be tested by Nikto.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/scripts/Carello/Carello.dll</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-6591</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Used to create, modify, and potentially delete LDAP users and groups.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/SiteServer/Admin/knowledge/dsmgr/users/GroupManager.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17656</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Trend Micro Officescan allows you to skip the login page and access some CGI programs directly.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/officescan/cgi/cgiChkMasterPwd.exe</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-6181</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Web Wiz Forums password database found.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/forum/admin/wwforum.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-35707</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Ocean12 ASP Guestbook Manager allows download of SQL database which contains admin password.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/guestbook/admin/o12guest.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-52975</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MIDICART database is available for browsing. This should not be allowed via the web server.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/MIDICART/midicart.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-15971</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MPCSoftWeb Guest Book passwords retrieved.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/mpcsoftweb_guestbook/database/mpcsoftweb_guestdata.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-41850</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Max Web Portal database is available remotely. It should be moved from the default location to a directory outside the web root.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/database/db2000.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4398</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Encrypted ID/Pass for Mercantec's SoftCart, http://www.mercantec.com/, see http://www.mindsec.com/advisories/post2.txt for more information.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/pw/storemgr.pw</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-6467</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Simple BBS 1.0.6 allows user information and passwords to be viewed remotely.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/simplebbs/users/users.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-53303</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> VChat allows user information to be retrieved.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/vchat/msg.txt</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-53386</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Expose various LDAP service and backend configuration parameters</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/SiteServer/Admin/knowledge/persmbr/vs.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17659</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MIPCD configuration information. MIPCD should not have the web interface enabled.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/USER/CONFIG.AP</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-31150</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Version 2.11 of AdMentor is vulnerable to SQL injection during login, in the style of: ' or =</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admentor/adminadmin.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-728</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> My_eGallery prior to 3.1.1.g are vulnerable to a remote execution bug via SQL command injection. displayCategory.php calls imageFunctions.php without checking URL/location arguments.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/My_eGallery/public/displayCategory.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-36894</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> BigIP Configuration CGI</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/cgi-bin/bigconf.cgi</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-22</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> upb PB allows the user database to be retrieved remotely.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/db/users.dat</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-59412</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> WF-Chat 1.0 Beta allows retrieval of user information.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/chat/!nicks.txt</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-59646</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Sunsolve CD script may allow users to execute arbitrary commands. The script was confirmed to exist, but the test was not done.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/cd-cgi/sscd_suncourier.pl</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-10598</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Comes with IRIX 5.0 - 6.3; allows to run arbitrary commands</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/cgi-bin/webdist.cgi</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-235</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Instant Web Mail (http://understroem.kdc/instantwebmail/) is installed. Versions 0.59 and lower can allow remote users to embed POP3 commands in URLs contained in email.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/instantwebmail/message.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-5280</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Mon Album from http://www.3dsrc.com version 0.6.2d allows remote admin access. This should be protected.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admin/admin_phpinfo.php4</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3233</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> phpAuction may allow user admin accounts to be inserted without proper authentication. Attempt to log in with user 'test' password 'test' to verify.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admin/login.php?action=insert&username=test&password=test</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-5034</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Hosting Controller 2002 administration page is available. This should be protected.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/accounts/getuserdesc.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-5088</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> EZMall2000 exposes order information, http://www.ezmall2000.com/, see http://www.mindsec.com/advisories/post2.txt for details.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/mall_log_files/order.log</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-6465</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Megabook guestbook configuration available remotely.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/megabook/files/20/setup.db</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3204</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> BSCW self-registration may be enabled. This could allow untrusted users semi-trusted access to the software. 3.x version (and probably some 4.x) allow arbitrary commands to be executed remotely.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/pub/english.cgi?op=rmail</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-5374</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> paBox 1.6 may allow remote users to set the admin password. If successful, the 'admin' password is now 'admin'.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/thebox/admin.php?act=write&username=admin&password=admin&aduser=admin&adpass=admin</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-2225</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Some versions of the FrontPage fp30reg.dll are vulnerable to a buffer overflow. See http://www.microsoft.com/technet/security/bulletin/https://docs.microsoft.com/en-us/security-updates/securitybulletins/2003/ms03-051.asp for details.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/_vti_bin/_vti_aut/fp30reg.dll</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3092</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> File used to store whether subwebs have unique permissions settings and any IP address restrictions.  Can be used to discover information about subwebs, remove or ACL if FrontPage is not being used.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/_vti_pvt/svacl.cnf</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-473</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Tomcat may be configured to let attackers read arbitrary files. Restrict access to /admin.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/manager/contextAdmin/contextAdmin.html</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-376</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Novell web server shows the server environment and is vulnerable to cross-site scripting</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/nsn/env.bas</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3715</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Axis WebCam 2400 may allow overwriting or creating files on the system. See http://www.websec.org/adv/axis2400.txt.html for details.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/axis-cgi/buffer/command.cgi</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4808</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> VP-ASP Shopping Cart 5.0 contains multiple SQL injection vulnerabilities. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-0560, http://www.securityfocus.com/bid/8159</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/shopping/diag_dbtest.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-2119</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> WebGate Web Eye exposes user names and passwords.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admin/wg_user-info.ml</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-2922</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> cphost.dll may have a DoS and a traversal issue.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/scripts/cphost.dll</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17669</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> phpBB found.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/forum/viewtopic.php</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3093</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> IIS may be vulnerable to source code viewing via the example Winmsdp.exe file. Remove all default files from the web root. http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0738. https://docs.microsoft.com/en-us/security-updates/securitybulletins/2099/MS99-013.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/iissamples/sdk/asp/docs/Winmsdp.exe?Source=/IISSAMPLES/%c0%ae%c0%ae/default.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3284</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MS Jet database engine can be used to make DSNs, useful with an ODBC exploit and the RDS exploit (with msadcs.dll) which mail allow command execution. RFP9901 (http://www.wiretrip.net/rfp/p/doc.asp/i2/d3.htm).</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/scripts/tools/getdrvrs.exe</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3512</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> dotProject 0.2.1.5 may allow admin login bypass by adding the user_cookie=1 to the URL.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/project/index.php?m=projects&user_cookie=1</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-3591</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Teekai's forum full 1.2 member's log can be retrieved remotely.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/data/member_log.txt</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4161</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MetaCart2 is an ASP shopping cart. The database of customers is available via the web.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/ASP/cart/database/metacart.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4171</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Xpede administration page may be available. The /admin directory should be protected.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admin/adminproc.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4238</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Alan Ward A-Cart 2.0 allows remote user to read customer database file which may contain usernames, passwords, credit cards and more.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/acart2_0/acart2_0.mdb</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4360</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> May be able to view source code using Site Server vulnerability.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/siteserver/publishing/viewcode.asp?source=/default.asp</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-17671</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Vignette Story Server v4.1, 6, may disclose sensitive information via a buffer overflow.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/securelogin/1,2345,A,00.html</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-4908</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> MyWebServer 1.0.2 may be vulnerable to a buffer overflow (untested). Upgrade to a later version if 990b of searched data crashes the server.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/MWS/HandleSearch.html?searchTarget=test&B1=Submit</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-5523</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> HP Instant TopTools GoAhead WebServer hpnst.exe may be vulnerable to a DoS.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/cgi-bin/hpnst.exe?c=p+i=SrvSystemInfo.html</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-6666</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> PY-Membres 4.2 may allow administrator access.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/admin/admin.php?adminpy=1</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-9624</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value">  Oracle Reports rwservlet report Variable Arbitrary Report Executable Execution</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/reports/rwservlet?server=repserv+report=/tmp/hacker.rdf+destype=cache+desformat=PDF</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-18114</div>
+                        </td>
+                    </tr>                    <tr>
+                        <td>
+                            <div class="filed big">HTTP Method</div>
+                            <div class="value"> GET</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Description</div>
+                            <div class="value"> Active Directory Federation Services page found.</div>
+                        </td>
+                        <td>
+                            <div class="filed big">Test Links</div>
+                            <div class="value link"> http://local-tt.dev-machinestalk.com:80/adfs/fs/federationserverservice.asmx</div>
+                        </td>
+                        <td>
+                            <div class="filed big">OSVDB Entries</div>
+                            <div class="value">OSVDB-96181</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>            <div id="zapScan" class="hide">.</div>
+            <div class="report" >
+                <div class="reportName">
+                    Owasp Zap scan
+                </div>
+                <div class="subReportName">
+                    Owasp Zap scan report
+                </div>
+                <div class="attackDetails">
+                    <span class="details">Attack details:</span>
+                    <span>- <span class="big">Used tool </span> : hydra</span>
+                    <span>- <span class="big">Target hostname </span> : local-tt.dev-machinestalk.com </span>
+                    <span>- <span class="big">Target IP </span> : 10.0.0.127</span>
+                    <span>- <span class="big">Target Port </span> : 80 </span>
+                </div>
+                <span class="details" >Summary of alerts:</span>
+                <table class="zapTable">
+                    <tr class="zapTr headTr">
+                        <th class="zapTh">Risk Level</th>
+                        <th class="zapTh">Number of alerts</th>
+                    </tr>
+                    <tr class="zapTr">
+                        <td class="zapTd">High</td>
+                        <td class="zapTd">1</td>
+                    </tr>
+                    <tr class="zapTr">
+                        <td class="zapTd">Medium</td>
+                        <td class="zapTd">2</td>
+                    </tr>
+                    <tr class="zapTr">
+                        <td class="zapTd">Low</td>
+                        <td class="zapTd">2</td>
+                    </tr>
+                    <tr class="zapTr">
+                        <td class="zapTd">Information</td>
+                        <td class="zapTd">0</td>
+                    </tr>
+
+                </table>                <span class="details">Alert details:</span>
+                <table class="alertTable">                    <th class="alertHead High">
+                        <div class="alertLevel">
+High                        </div>
+                        <div class="alertName">
+Content Security Policy (CSP) Header Not Set                        </div>
+
+                    </th>                    <tbody>
+                        <tr class="alertTr">
+                            <td class="alertTd">
+                                <div class="alertFiled big">Description</div>
+                                <div class="value"><p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware. CSP provides a set of standard HTTP headers that allow website owners to declare approved sources of content that browsers should be allowed to load on that page — covered types are JavaScript, CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and video files.</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">URL</div>
+                                <div class="alertValue link"> http://local-tt.dev-machinestalk.com</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Method</div>
+                                <div class="alertValue"> GET</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Reference</div>
+                                <div class="alertValue"> <p>https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy</p><p>https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html</p><p>http://www.w3.org/TR/CSP/</p><p>http://w3c.github.io/webappsec/specs/content-security-policy/csp-specification.dev.html</p><p>http://www.html5rocks.com/en/tutorials/security/content-security-policy/</p><p>http://caniuse.com/#feat=contentsecuritypolicy</p><p>http://content-security-policy.com/</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Quick Solution</div>
+                                <div class="alertValue"> <p>Ensure that your web server, application server, load balancer, etc. is configured to set the Content-Security-Policy header, to achieve optimal browser support: "Content-Security-Policy" for Chrome 25+, Firefox 23+ and Safari 7+, "X-Content-Security-Policy" for Firefox 4.0+ and Internet Explorer 10+, and "X-WebKit-CSP" for Chrome 14+ and Safari 6+.</p></div>
+                            </td>
+                        </tr>
+                    </tbody>                    <th class="alertHead Medium">
+                        <div class="alertLevel">
+Medium                        </div>
+                        <div class="alertName">
+Missing Anti-clickjacking Header                        </div>
+
+                    </th>                    <tbody>
+                        <tr class="alertTr">
+                            <td class="alertTd">
+                                <div class="alertFiled big">Description</div>
+                                <div class="value"><p>The response does not include either Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options to protect against 'ClickJacking' attacks.</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">URL</div>
+                                <div class="alertValue link"> http://local-tt.dev-machinestalk.com</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Method</div>
+                                <div class="alertValue"> GET</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Reference</div>
+                                <div class="alertValue"> <p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Quick Solution</div>
+                                <div class="alertValue"> <p>Modern Web browsers support the Content-Security-Policy and X-Frame-Options HTTP headers. Ensure one of them is set on all web pages returned by your site/app.</p><p>If you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. Alternatively consider implementing Content Security Policy's "frame-ancestors" directive.</p></div>
+                            </td>
+                        </tr>
+                    </tbody>                    <th class="alertHead Medium">
+                        <div class="alertLevel">
+Medium                        </div>
+                        <div class="alertName">
+X-Content-Type-Options Header Missing                        </div>
+
+                    </th>                    <tbody>
+                        <tr class="alertTr">
+                            <td class="alertTd">
+                                <div class="alertFiled big">Description</div>
+                                <div class="value"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">URL</div>
+                                <div class="alertValue link"> http://local-tt.dev-machinestalk.com/main.b5cf43d44a442c93382f.js</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Method</div>
+                                <div class="alertValue"> GET</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Reference</div>
+                                <div class="alertValue"> <p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://owasp.org/www-community/Security_Headers</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Quick Solution</div>
+                                <div class="alertValue"> <p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></div>
+                            </td>
+                        </tr>
+                    </tbody>                    <th class="alertHead Low">
+                        <div class="alertLevel">
+Low                        </div>
+                        <div class="alertName">
+Timestamp Disclosure - Unix                        </div>
+
+                    </th>                    <tbody>
+                        <tr class="alertTr">
+                            <td class="alertTd">
+                                <div class="alertFiled big">Description</div>
+                                <div class="value"><p>A timestamp was disclosed by the application/web server - Unix</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">URL</div>
+                                <div class="alertValue link"> http://local-tt.dev-machinestalk.com/main.b5cf43d44a442c93382f.js</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Method</div>
+                                <div class="alertValue"> GET</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Reference</div>
+                                <div class="alertValue"> <p>http://projects.webappsec.org/w/page/13246936/Information%20Leakage</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Quick Solution</div>
+                                <div class="alertValue"> <p>Manually confirm that the timestamp data is not sensitive, and that the data cannot be aggregated to disclose exploitable patterns.</p></div>
+                            </td>
+                        </tr>
+                    </tbody>                    <th class="alertHead Low">
+                        <div class="alertLevel">
+Low                        </div>
+                        <div class="alertName">
+Information Disclosure - Suspicious Comments                        </div>
+
+                    </th>                    <tbody>
+                        <tr class="alertTr">
+                            <td class="alertTd">
+                                <div class="alertFiled big">Description</div>
+                                <div class="value"><p>The response appears to contain suspicious comments which may help an attacker. Note: Matches made within script blocks or files are against the entire content not only comments.</p></div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">URL</div>
+                                <div class="alertValue link"> http://local-tt.dev-machinestalk.com/main.b5cf43d44a442c93382f.js</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Method</div>
+                                <div class="alertValue"> GET</div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Reference</div>
+                                <div class="alertValue"> </div>
+                            </td>
+                            <td class="alertTd">
+                                <div class="alertFiled big">Quick Solution</div>
+                                <div class="alertValue"> <p>Remove all comments that return information that may help an attacker and fix any underlying problems they refer to.</p></div>
+                            </td>
+                        </tr>
+                    </tbody>                </table>
+
+
+        </div>
+    </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

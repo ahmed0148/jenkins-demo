@@ -6,33 +6,41 @@ import org.json.XML;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-//    String SQLInjectionReport=SQLScanReport();
-//    String bruteForceReport=bruteForceReport();
-//    String niktoScanReport=niktoReport();
-//    String owaspZapReport=zapScanReport();
-//    String dosReport=dosReport();
-    String top = top();
-    String end = end();
-    String body="";
-    String path="index.html";
-    PrintWriter writer = new PrintWriter(path, "UTF-8");
-    writer.println(top+body+end);
-    writer.flush();
-    writer.close();
 
 }
+    @Test
+    public void testZero() throws IOException, InterruptedException {
+        String url="local-tt.dev-machinestalk.com";
+        String SQLUrlLoging="iam-v5.dev-machinestalk.com/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=§U51vv44frQlbVgc1lbIL-tvznpv89iAiXcDGj9in-Xg§&execution=§890b7cb1-076b-4b98-96e6-b6cf59763356§&client_id=§thingstalk§&tab_id=§lx_8pDqeEw0§";
+        String SQLData="username=§test§&password=§test§";
+        String SQLInjectionReport=SQLScanReport(SQLUrlLoging,SQLData);
+        String bruteForceReport=bruteForceReport("10.0.0.100",url);
+        String niktoScanReport=niktoReport(url);
+        String owaspZapReport=zapScanReport(url);
+        String dosReport=dosReport();
+        String top = top();
+        String end = end();
+        String body=dosReport+SQLInjectionReport+bruteForceReport+niktoScanReport+owaspZapReport;
+        String path="index.html";
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.println(top+body+end);
+        writer.flush();
+        writer.close();
+
+
+    }
 public static String dosReport() throws IOException, InterruptedException {
 JSONObject dosReportObj=Dos("local-tt.dev-machinestalk.com");
 String top="            <div class=\"report\" >\n" +
@@ -66,13 +74,11 @@ if (dosReportObj.get("result").toString().contains("false")){
                 "                </div>";
     }
 String end="\n" +
-    "            </div>\n" +
-    "                       <div id=\"bruteForce\" class=\"hide\">.</div>\n";
+    "            </div>\n" ;
     return top+body+end;
 }
-
-public static String zapScanReport() throws IOException, InterruptedException {
-JSONObject zapScanReportObj=zapScan();
+public static String zapScanReport(String url) throws IOException, InterruptedException {
+JSONObject zapScanReportObj=zapScan(url);
 JSONObject OWASPZAPReport=(JSONObject) zapScanReportObj.get("OWASPZAPReport");
 JSONObject site=(JSONObject) OWASPZAPReport.get("site");
 JSONObject alerts=(JSONObject) site.get("alerts");
@@ -98,7 +104,7 @@ System.out.println("medium"+medium);
 System.out.println("low"+low);
 System.out.println("high"+high);
 System.out.println("info"+info);
-String top="            <div class=\"report\" >\n" +
+String top= "<div id=\"zapScan\" class=\"hide\">.</div>"+ "            <div class=\"report\" >\n" +
     "                <div class=\"reportName\">\n" +
     "                    Owasp Zap scan\n" +
     "                </div>\n" +
@@ -107,9 +113,8 @@ String top="            <div class=\"report\" >\n" +
     "                </div>\n" +
     "                <div class=\"attackDetails\">\n" +
     "                    <span class=\"details\">Attack details:</span>\n" +
-    "                    <span>- <span class=\"big\">Used tool </span> : hydra</span>\n" +
+    "                    <span>- <span class=\"big\">Used tool </span> : zap</span>\n" +
     "                    <span>- <span class=\"big\">Target hostname </span> : local-tt.dev-machinestalk.com </span>\n" +
-    "                    <span>- <span class=\"big\">Target IP </span> : 10.0.0.127</span>\n" +
     "                    <span>- <span class=\"big\">Target Port </span> : 80 </span>\n" +
     "                </div>\n" +
     "                <span class=\"details\" >Summary of alerts:</span>\n" +
@@ -202,12 +207,10 @@ String end="            </div>";
 return top+body;
 }
 
-public static String niktoReport() throws IOException, InterruptedException {
-JSONObject niktoReport=niktoScan();
+public static String niktoReport(String url) throws IOException, InterruptedException {
+JSONObject niktoReport=niktoScan(url);
 String elapsedTime= (String) niktoReport.get("Elapsed Time");
-String top="  <div id=\"niktoScan\" class=\"hide\">.</div>\n" +
-        "\n" +
-        "            <div class=\"report\" >\n" +
+String top=    "<div id=\"niktoScan\" class=\"hide\">.</div>"+    "            <div class=\"report\" >\n" +
         "                <div class=\"reportName\">\n" +
         "                    Nikto scan\n" +
         "                </div>\n" +
@@ -253,12 +256,11 @@ for (Object el:arr
 String end="\n" +
         "                </table>\n" +
         "            </div>";
-end+="            <div id=\"zapScan\" class=\"hide\">.</div>\n";
 return top+body+end;
 }
-public static String SQLScanReport() throws IOException, InterruptedException {
-JSONObject SQLReport=SQLMapScan("local-iam.dev-machinestalk.com/auth/","username=hello&password=hello%3A%29",1);
-String top="";
+public static String SQLScanReport(String SQLUrlLoging, String SQLData) throws IOException, InterruptedException {
+JSONObject SQLReport=SQLMapScan(SQLUrlLoging,SQLData,1);
+String top="<div id=\"SQLInjection\" class=\"hide\">.</div>";
 top +="\n" +
 "            <div class=\"report\" >\n" +
 "\n" +
@@ -298,9 +300,9 @@ String endd="                <br>\n" +
         "            </div>";
 return top+body+endd;
 }
-public  static String bruteForceReport() throws IOException, InterruptedException {
-JSONObject hydraReportSSH = hydraScanSSH();
-JSONObject hydraReportLogin = hydraScanLogin();
+public  static String bruteForceReport(String ip ,String url) throws IOException, InterruptedException {
+JSONObject hydraReportSSH = hydraScanSSH(ip);
+JSONObject hydraReportLogin = hydraScanLogin(url);
 String numberOfTriesSSH=""+hydraReportSSH.get("Number of tries");
 String numberOfTriesLogin=""+hydraReportLogin.get("Number of tries");
 String loginResult="";
@@ -332,7 +334,7 @@ SSHResults="<div class=\"successAlert myAlert\">\n" +
     "                    0 valide credantials\n" +
     "                </div>";
 }
-String bruteForceReport="            <div class=\"report\" >\n" +
+String bruteForceReport=" <div id=\"bruteForce\" class=\"hide\">.</div>"+"           <div class=\"report\" >\n" +
 "\n" +
 "                <div class=\"reportName\">\n" +
 "                    Brute Force attack\n" +
@@ -347,11 +349,11 @@ String bruteForceReport="            <div class=\"report\" >\n" +
 "                    <span>- <span class=\"big\">Target SSH Address </span> : ssh://10.0.0.127:22 </span>\n" +
 "                    <span>- <span class=\"big\">Number of login tries </span> :"+numberOfTriesLogin+" </span>\n" +
 "                    <span>- <span class=\"big\">Number of SSH tries </span> : "+numberOfTriesSSH+"</span>\n" +
-"                    <span>- <span class=\"big\"> Login Usernames list </span> :<a href=\"Login_Usernames.txt\">Login\n" +
+"                    <span>- <span class=\"big\"> Login Usernames list </span> :<a class=\"link\" href=\"Login_Usernames\">Login\n" +
 "                            usernames</a></span>\n" +
-"                    <span>- <span class=\"big\">Login Passwords list </span> :<a class=\"link\" href=\"Login_Passwords.txt\">Login passwords</a></span>\n" +
-"                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a class=\"link\" href=\"SSH_Usernames.txt\">SSH usernames</a></span>\n" +
-"                    <span>- <span class=\"big\">SSH Passwords list </span> :<a class=\"link\" href=\"SSH_Usernames.txt\">SSH passwords</a></span>\n" +
+"                    <span>- <span class=\"big\">Login Passwords list </span> :<a class=\"link\" href=\"Login_Passwords\">Login passwords</a></span>\n" +
+"                    <span>- <span class=\"big\"> SSH Usernames list </span> : <a class=\"link\" href=\"SSH_Usernames\">SSH usernames</a></span>\n" +
+"                    <span>- <span class=\"big\">SSH Passwords list </span> :<a class=\"link\" href=\"SSH_Usernames\">SSH passwords</a></span>\n" +
 "\n" +
 "                </div>\n" +
 "                <span class=\"details\">Login page Result:</span>\n" +
@@ -368,41 +370,29 @@ SSHResults+
 return bruteForceReport;
 }
 
-@Test
-public void testZero() throws IOException, InterruptedException {
-//    String SQLInjectionReport=SQLScanReport();
-//    String bruteForceReport=bruteForceReport();
-//    String niktoScanReport=niktoReport();
-//    String owaspZapReport=zapScanReport();
-//    String dosReport=dosReport();
-//    String top = top();
-//    String end = end();
-//    String body=dosReport+SQLInjectionReport+bruteForceReport+niktoScanReport+owaspZapReport;
-//    String path="index.html";
-//    PrintWriter writer = new PrintWriter(path, "UTF-8");
-//    writer.println(top+body+end);
-//    writer.flush();
-//    writer.close();
-    System.out.println("======================================================");
-    System.out.println("======================================================");
-    System.out.println("======================================================");
-    System.out.println("======================================================");
 
-}
 
-public static JSONObject hydraScanLogin() throws IOException, InterruptedException {
+public static JSONObject hydraScanLogin(String url) throws IOException, InterruptedException {
 System.out.println("hydra scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
-String terminalCommand = "hydra -L /home/ahmed/Desktop/Login_Usernames -P /home/ahmed/Desktop/password_list.txt local-iam.dev-machinestalk.com http-post-form \"/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/login-actions/authenticate?session_code=BFX_Z-jkHIUg1eSCSzad7QwtvxP2TkGYG1AqWycxXTo&execution=11e34933-e64e-417e-88ff-8ab1ec2847c5&client_id=thingstalk&tab_id=WxWenBoK8WQ:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json\n";
+String hydraUrl="uat-iam.thingstalk.io";
+    String terminalCommand = "hydra -L /home/ahmed/Desktop/Login_Usernames -P /home/ahmed/Desktop/password_list.txt iam-v5.dev-machinestalk.com http-post-form \"/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json";
+    System.out.println(terminalCommand);
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 Process p = pb.start();
-String s;
 BufferedReader br = new BufferedReader(
     new InputStreamReader(p.getInputStream()));
 int numberOfTries = 0;
 JSONArray results = new JSONArray();
-while ((s = br.readLine()) != null) {
+Boolean loop=true;
+while (loop) {
+    String s=br.readLine();
+    System.out.println(s);
+    if (s.startsWith("[VERBOSE] ")){
+        System.out.println("yooo");
+        continue;
+    }
 if (numberOfTries == 0) {
     if (s.contains("of ")) {
         numberOfTries = Integer.parseInt(s.substring(s.indexOf(" of ") + 4, s.indexOf(" [")));
@@ -415,10 +405,11 @@ if (s.startsWith("[80][http-post-form]")) {
     rst.put("password", s.indexOf("password: ") + ("password: ").length());
     results.put(rst);
 }
+if (s.startsWith("[STATUS]")){
+    loop=false;
+}
 }
 
-p.waitFor();
-p.destroy();
 Thread.sleep(2000);
 JSONObject obj = new JSONObject();
 obj.put("Number of tries", numberOfTries);
@@ -430,12 +421,12 @@ return obj;
 
 }
 
-public static JSONObject hydraScanSSH() throws IOException, InterruptedException {
+public static JSONObject hydraScanSSH(String ip) throws IOException, InterruptedException {
 System.out.println("hydra scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
 //        String terminalCommand ="hydra -L /home/ahmed/Desktop/Login_Usernames -P /home/ahmed/Desktop/password_list.txt local-iam.dev-machinestalk.com http-post-form \"/auth/realms/30d74b00-c16b-11ec-b363-df9b89c1f66c/login-actions/authenticate?session_code=BFX_Z-jkHIUg1eSCSzad7QwtvxP2TkGYG1AqWycxXTo&execution=11e34933-e64e-417e-88ff-8ab1ec2847c5&client_id=thingstalk&tab_id=WxWenBoK8WQ:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json\n";
-String terminalCommand = "hydra -L /home/ahmed/Desktop/SSH_Usernames -P /home/ahmed/Desktop/SSH_Passwords 10.0.0.127 -t 4 ssh\n";
+String terminalCommand = "hydra -L /home/ahmed/Desktop/SSH_Usernames -P /home/ahmed/Desktop/SSH_Passwords "+ip+" -t 4 ssh\n";
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 Process p = pb.start();
 String s;
@@ -445,9 +436,7 @@ int numberOfTries = 0;
 boolean success = true;
 JSONArray results = new JSONArray();
 while ((s = br.readLine()) != null) {
-if (s.startsWith("[DATA] max 4")) {
-
-
+if (s.startsWith("[DATA] max ")) {
     numberOfTries = Integer.parseInt(s.substring(s.indexOf("tasks, ") + ("tasks, ").length(), s.indexOf(" login")));
 }
 if (s.startsWith("1 of 1 target")) {
@@ -466,11 +455,11 @@ return obj;
 
 }
 
-public static JSONObject zapScan() throws IOException, InterruptedException {
+public static JSONObject zapScan(String url) throws IOException, InterruptedException {
 System.out.println("zap scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
-String terminalCommand = "./zap.sh -daemon -quickurl http://local-tt.dev-machinestalk.com/";
+String terminalCommand = "./zap.sh -daemon -quickurl http://"+url;
 
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 
@@ -514,6 +503,7 @@ System.out.println("sqlmap is running");
 String prefix = "/bin/bash";
 String c = "-c";
 String terminalCommand = "sqlmap -u '" + url + "' --data '" + data + "' --level " + level + " --risk " + level + " --ignore-stdin";
+    System.out.println(terminalCommand);
 ProcessBuilder pb = new ProcessBuilder(
     new String[]{prefix, c, terminalCommand});
 
@@ -533,7 +523,7 @@ while ((s = br.readLine()) != null) {
 
 System.out.println(s);
 if (s.contains("INFO")) {
-    if (s.contains("Microsoft")||s.contains("Oracle")||s.contains("Generic")||s.contains("MySQL")||s.contains("PostgreSQL"))
+    if (s.contains("Microsoft")||s.contains("Oracle")||s.contains("Generic")||s.contains("MySQL")||s.contains("PostgreSQL")||s.contains("Boolean-based")||s.contains("AND boolean-based"))
         continue;
     info.put(s.substring(s.indexOf("[INFO]") + "[INFO] ".length()));
 }
@@ -548,7 +538,7 @@ if (s.contains("CRITICAL")) {
         critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length(), s.indexOf(". Try to increase")));
         continue;
     }
-//    critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length()));
+    critical.put(s.substring(s.indexOf("[CRITICAL]") + "[CRITICAL] ".length()));
 
 }
 }
@@ -563,11 +553,12 @@ p.destroy();
 return obj;
 }
 
-public static JSONObject niktoScan() throws IOException, InterruptedException {
+public static JSONObject niktoScan(String url) throws IOException, InterruptedException {
 System.out.println("nikto scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
-String terminalCommand = "nikto -h http://local-tt.dev-machinestalk.com";
+String terminalCommand = "nikto -h "+url;
+    System.out.println(terminalCommand);
 ProcessBuilder pb = new ProcessBuilder(
     new String[]{prefix, c, terminalCommand});
 File workingDirectory = new File("/home/ahmed/Downloads/ZAP_2.11.1");
@@ -643,6 +634,9 @@ p.destroy();
 return obj2;
 }
 public static String top(){
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    Calendar cal = Calendar.getInstance();
+    String date=dateFormat.format(cal.getTime());
 String top="<!DOCTYPE html>\n" +
         "<html lang=\"en\">\n" +
         "\n" +
@@ -664,7 +658,7 @@ String top="<!DOCTYPE html>\n" +
         "            <span>Penetration test report</span>\n" +
         "        </div>\n" +
         "        <div class=\"reportDate\">\n" +
-        "            <span>date date</span>\n" +
+        "            <span>"+date+"</span>\n" +
         "        </div>\n" +
         "    </nav>\n" +
         "    <div class=\"container\">\n" +
