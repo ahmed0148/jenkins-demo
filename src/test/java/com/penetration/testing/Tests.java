@@ -18,12 +18,14 @@ class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-
+    String hydraURL=System.getenv("hydraURL");
+    String hydraSubURL=System.getenv("hydraSubURL");
+    hydraScanLogin(hydraURL,hydraSubURL);
 }
     @Test
     public void testZero() throws IOException, InterruptedException {
         String hydraURL=System.getenv("hydraURL");
-        String hydraSubURL=System.getenv("hydraURL");
+        String hydraSubURL=System.getenv("hydraSubURL");
         String url=System.getenv("url");
         String SQLUrlLoging=System.getenv("SQLUrlLoging");
         String SQLData=System.getenv("SQLData");
