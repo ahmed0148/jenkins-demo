@@ -18,17 +18,27 @@ class Tests {
 
 
 public static void main(String[] args) throws IOException, InterruptedException {
-    hydraScanLogin("url");}
+
+}
     @Test
     public void testZero() throws IOException, InterruptedException {
-        String url="local-tt.dev-machinestalk.com";
-        String SQLUrlLoging="iam-v5.dev-machinestalk.com/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=§U51vv44frQlbVgc1lbIL-tvznpv89iAiXcDGj9in-Xg§&execution=§890b7cb1-076b-4b98-96e6-b6cf59763356§&client_id=§thingstalk§&tab_id=§lx_8pDqeEw0§";
-        String SQLData="username=§test§&password=§test§";
+        String hydraURL=System.getenv("hydraURL");
+        String hydraSubURL=System.getenv("hydraURL");
+        String url=System.getenv("url");
+        String SQLUrlLoging=System.getenv("SQLUrlLoging");
+        String SQLData=System.getenv("SQLData");
+        String urlIp=System.getenv("urlIp");
+//        String hydraURL="hydraURL=iam-v5.dev-machinestalk.com";
+//        String hydraSubURL="auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout";
+//        String url="local-tt.dev-machinestalk.com";
+//        String SQLUrlLoging="iam-v5.dev-machinestalk.com/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=§U51vv44frQlbVgc1lbIL-tvznpv89iAiXcDGj9in-Xg§&execution=§890b7cb1-076b-4b98-96e6-b6cf59763356§&client_id=§thingstalk§&tab_id=§lx_8pDqeEw0§";
+//        String SQLData="username=§test§&password=§test§";
+//        String urlIp="10.0.0.100";
         String SQLInjectionReport=SQLScanReport(SQLUrlLoging,SQLData);
-        String bruteForceReport=bruteForceReport("10.0.0.100",url);
+        String bruteForceReport=bruteForceReport(urlIp,hydraURL,hydraSubURL);
         String niktoScanReport=niktoReport(url);
         String owaspZapReport=zapScanReport(url);
-        String dosReport=dosReport();
+        String dosReport=dosReport(url);
         String top = top();
         String end = end();
         String body=dosReport+SQLInjectionReport+bruteForceReport+niktoScanReport+owaspZapReport;
@@ -40,8 +50,8 @@ public static void main(String[] args) throws IOException, InterruptedException 
 
 
     }
-public static String dosReport() throws IOException, InterruptedException {
-JSONObject dosReportObj=Dos("local-tt.dev-machinestalk.com");
+public static String dosReport(String url) throws IOException, InterruptedException {
+JSONObject dosReportObj=Dos(url);
 String top="            <div class=\"report\" >\n" +
         "\n" +
         "                <div class=\"reportName\">\n" +
@@ -299,9 +309,9 @@ String endd="                <br>\n" +
         "            </div>";
 return top+body+endd;
 }
-public  static String bruteForceReport(String ip ,String url) throws IOException, InterruptedException {
+public  static String bruteForceReport(String ip ,String arg0,String arg1) throws IOException, InterruptedException {
 JSONObject hydraReportSSH = hydraScanSSH(ip);
-JSONObject hydraReportLogin = hydraScanLogin(url);
+JSONObject hydraReportLogin = hydraScanLogin(arg0,arg1);
 String numberOfTriesSSH=""+hydraReportSSH.get("Number of tries");
 String numberOfTriesLogin=""+hydraReportLogin.get("Number of tries");
 String loginResult="";
@@ -371,12 +381,12 @@ return bruteForceReport;
 
 
 
-public static JSONObject hydraScanLogin(String url) throws IOException, InterruptedException {
+public static JSONObject hydraScanLogin(String hydraURL,String hydraSubURL) throws IOException, InterruptedException {
 System.out.println("hydra scan is running");
 String prefix = "/bin/bash";
 String c = "-c";
-String hydraUrl="uat-iam.thingstalk.io";
-    String terminalCommand = "hydra -L Login_Usernames -P Login_Passwords iam-v5.dev-machinestalk.com http-post-form \"/auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout\" -vV  -o myResult -b json ";
+    System.out.println("hydraSubURL"+hydraSubURL);
+    String terminalCommand = "hydra -L Login_Usernames -P Login_Passwords "+hydraURL+" http-post-form \"/"+hydraSubURL+"\" -vV  -o myResult -b json ";
     System.out.println(terminalCommand);
 ProcessBuilder pb = new ProcessBuilder(new String[]{prefix, c, terminalCommand});
 Process p = pb.start();
@@ -496,7 +506,6 @@ System.out.println("////////////////////////////////////////////////////////////
 System.out.println(json.toString(2));
 return json;
 }
-
 public static JSONObject SQLMapScan(String url, String data, int level) throws IOException, InterruptedException {
 System.out.println("sqlmap is running");
 
