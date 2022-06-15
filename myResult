@@ -1,5 +1,5 @@
 { "generator": {
-	"software": "Hydra", "version": "v9.2", "built": "2022-06-15 05:03:16",
+	"software": "Hydra", "version": "v9.2", "built": "2022-06-15 06:08:21",
 	"server": "iam-v5.dev-machinestalk.com", "service": "http-post-form", "jsonoutputversion": "1.00",
 	"commandline": "hydra -L Login_Usernames -P Login_Passwords -vV -o myResult -b json iam-v5.dev-machinestalk.com http-post-form /auth/realms/92e6ac00-e1af-11ec-bea7-fd9b5cb28c63/login-actions/authenticate?session_code=iRVeyPHECyRc9_Ta_2M9YfnpNCt4LspcvjqDYtrT8Qo&execution=890b7cb1-076b-4b98-96e6-b6cf59763356&client_id=thingstalk&tab_id=SaluYkF8B2A:username=^USER^&password=^PASS^:S=logout"
 	},
